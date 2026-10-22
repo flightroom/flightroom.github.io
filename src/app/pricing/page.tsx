@@ -20,9 +20,9 @@ const pricingPlans = [
   {
     name: "Starter",
     price: "Free",
-    description: "Perfect for individual developers and small projects",
+    description: "Perfect for a first app or agent and a small team",
     features: [
-      "Up to 3 microfrontends",
+      "Up to 3 apps or agents",
       "1 environment",
       "Community support",
       "Git integration (GitHub, GitLab, Azure DevOps)"
@@ -36,13 +36,13 @@ const pricingPlans = [
     price: "$49",
     description: "For growing teams that need more power",
     features: [
-      "Up to 20 microfrontends",
+      "Up to 20 apps or agents",
       "3 environments",
       "Priority support",
       "Team collaboration",
       "CI/CD integration",
       "GitOps deploys with Argo CD",
-      "AI changes delivered as pull requests"
+      "AI-written changes delivered as pull requests"
     ],
     cta: "Start Free Trial",
     popular: true,
@@ -53,12 +53,10 @@ const pricingPlans = [
     price: "Custom",
     description: "For organizations with advanced requirements",
     features: [
-      "Unlimited microfrontends",
+      "Unlimited apps or agents",
       "Unlimited environments",
       "24/7 dedicated support",
-      "Advanced security features",
-      "SLA guarantees",
-      "On-premises deployment",
+      "Help with self-hosted and on-premises rollouts",
       "Custom integrations"
     ],
     cta: "Contact Sales",
@@ -69,8 +67,9 @@ const pricingPlans = [
 
 const includedFeatures = [
   "Unlimited deployments",
-  "Immutable snapshots and rollback",
-  "Roles for orgs and projects",
+  "One-click deploy through GitOps and Argo CD",
+  "Single sign-on with Microsoft Entra ID, Google or Auth0",
+  "Roles for organizations and projects",
   "CI/CD integration",
   "Bring your own AI model"
 ];

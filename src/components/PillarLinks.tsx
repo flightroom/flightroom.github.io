@@ -1,22 +1,22 @@
 import Link from "next/link";
-import { ArrowRight, Layers, Ship, Sparkles } from "lucide-react";
+import { ArrowRight, Building2, Rocket, Sparkles } from "lucide-react";
 import { PILLARS } from "@/lib/seo";
 
 const pillars = [
   {
-    ...PILLARS.microFrontends,
-    icon: Layers,
-    blurb: "Release, version and roll back micro frontends without rebuilding the host.",
-  },
-  {
-    ...PILLARS.kubernetes,
-    icon: Ship,
-    blurb: "Deploy services and frontends to Kubernetes through GitOps and Argo CD.",
-  },
-  {
-    ...PILLARS.ai,
+    ...PILLARS.build,
     icon: Sparkles,
-    blurb: "Describe a change in plain words and get it back as a pull request.",
+    blurb: "Describe an app or an agent in plain words. The AI writes it in your repositories.",
+  },
+  {
+    ...PILLARS.ship,
+    icon: Rocket,
+    blurb: "One click deploys it to your Kubernetes through GitOps and Argo CD.",
+  },
+  {
+    ...PILLARS.enterprise,
+    icon: Building2,
+    blurb: "Your single sign-on, your roles, your AI models, your cloud.",
   },
 ];
 

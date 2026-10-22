@@ -1,6 +1,6 @@
 # Flightroom website
 
-Source of [flightroom.dev](https://flightroom.dev), the public site for Flightroom (formerly MFE Orchestrator). Next.js 15 static export, Tailwind v4, React 19.
+Source of [flightroom.dev](https://flightroom.dev), the public site for Flightroom, the open-source enterprise platform where anyone builds apps and AI agents by describing them, and ships them in one click to Kubernetes. Next.js 15 static export, Tailwind v4, React 19.
 
 ## Develop
 

@@ -1,26 +1,27 @@
 # Flightroom
 
-> Build, ship and run your whole product on Kubernetes.
+> Apps and AI agents, built by anyone, shipped in one click.
 
-Flightroom (formerly MFE Orchestrator) is an open-source platform that takes micro
-frontends and backend services from template to Kubernetes. It versions every
-build, releases micro frontends without rebuilding the host, deploys services
-through GitOps with Argo CD, and lets anyone on the team describe a change in
-plain language and get it back as a pull request. It runs as a hosted console or
+Flightroom is an open-source enterprise platform where anyone on the team can build
+an application or an AI agent by describing it in plain language. The AI writes the
+code on a branch in your own Git repositories, starting from Flightroom's templates.
+Protect the base branch and it goes through pull request review and your CI. One
+click then deploys it to your
+Kubernetes through GitOps and Argo CD, with your single sign-on, your roles and the
+AI models your organization chose. An agent in Flightroom is an application: a service
+that reasons with a model and calls your systems. It runs as a hosted console or
 self-hosted with Docker, Docker Compose, a Helm chart on Kubernetes, or
 Terraform/OpenTofu. License: Apache-2.0.
 
-Category: open-source platform for micro frontends and services on Kubernetes.
-Also written: micro-frontend, microfrontend. MFE stands for micro frontend.
-
-This file is a pointer. The documentation is served from mfe-orchestrator.dev/documentation for now and
+Category: enterprise platform for AI-built apps and agents.
+This file is a pointer. The documentation lives at flightroom.dev/documentation and
 carries its own llms.txt, which indexes every page.
 
 ## Documentation
 
-- [llms.txt](https://mfe-orchestrator.dev/documentation/llms.txt): index of every documentation page, each with a one-line description
-- [llms-full.txt](https://mfe-orchestrator.dev/documentation/llms-full.txt): the full markdown of every documentation page, in one file
-- [Documentation home](https://mfe-orchestrator.dev/documentation/): the HTML documentation
+- [llms.txt](https://flightroom.dev/documentation/llms.txt): index of every documentation page, each with a one-line description
+- [llms-full.txt](https://flightroom.dev/documentation/llms-full.txt): the full markdown of every documentation page, in one file
+- [Documentation home](https://flightroom.dev/documentation/): the HTML documentation
 
 ## Product
 
@@ -30,14 +31,12 @@ carries its own llms.txt, which indexes every page.
 
 ## Pillars
 
-- [Micro frontends](https://flightroom.dev/micro-frontends): independent releases without rebuilding the host, immutable snapshots, rollback, canary releases, per-environment variables, Module Federation config for Vite and Webpack
-- [Kubernetes](https://flightroom.dev/kubernetes): GitOps deploys with Argo CD, backend services from templates, environments as namespaces, Gateway API exposure
-- [AI](https://flightroom.dev/ai): describe a change in plain language and get a pull request, bring your own model, remote MCP server
+- [Build with AI](https://flightroom.dev/ai): describe an app or an agent, the AI writes it on a branch from a template, refine it through chat, review the pull request, bring your own model, remote MCP server
+- [One-click deploy](https://flightroom.dev/kubernetes): a Deploy button ships it to your Kubernetes through GitOps and Argo CD, environments as namespaces, a URL and TLS per environment
+- [Enterprise](https://flightroom.dev/enterprise): single sign-on, roles, review, your own AI models, self-hosted in your cloud or on-premises, open source
 
-## Concepts
+## More
 
-- [What is a micro frontend (MFE)?](https://flightroom.dev/what-is-a-micro-frontend): definition of the term, the architecture, its trade-offs and when it is worth adopting
-- [Module Federation versioning and dynamic remotes](https://flightroom.dev/module-federation): why Module Federation alone leaves version selection to you, and how Flightroom replaces a hand-maintained remotes file
-- [FAQ](https://flightroom.dev/faq): common questions on micro frontends, Kubernetes deploys, AI changes and self-hosting
+- [FAQ](https://flightroom.dev/faq): common questions on building with AI, one-click deploys, security and self-hosting
 - [Get started](https://flightroom.dev/start-now): the hosted console, or self-hosting
-- [About](https://flightroom.dev/about): why the project exists and how it grew from MFE Orchestrator
+- [About](https://flightroom.dev/about): why the project exists

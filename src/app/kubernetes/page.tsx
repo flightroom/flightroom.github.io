@@ -12,38 +12,88 @@ import {
   GitBranch,
   GitCommit,
   Globe,
+  HeartPulse,
   History,
+  KeyRound,
   Lock,
   MonitorSmartphone,
+  MousePointerClick,
   RefreshCw,
+  Rocket,
   Server,
   ShieldCheck,
-  Ship,
   Terminal,
+  Users,
 } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
 import PillarLinks from "@/components/PillarLinks";
-import { CONSOLE_URL, DOCS_URL, GITHUB_REPO_URL, pageMetadata } from "@/lib/seo";
+import { CONSOLE_URL, DOCS_URL, GITHUB_REPO_URL, PILLARS, pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/structuredData";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Kubernetes GitOps with Argo CD and Gateway API",
+  title: "One-Click Deploy to Kubernetes with Argo CD",
   description:
-    "Deploy backend services and frontends to Kubernetes with GitOps. Flightroom commits to Git, Argo CD syncs the cluster, the Gateway API exposes each environment.",
+    "Press Deploy and Flightroom commits to Git, Argo CD syncs your Kubernetes, and each app or agent gets its namespace, secrets, URL and TLS per environment.",
   path: "/kubernetes",
   keywords: [
-    "kubernetes developer platform",
+    "one-click deploy kubernetes",
+    "deploy ai agents to kubernetes",
     "argo cd gitops",
     "argo cd applicationset",
     "gitops deployment tool",
     "gateway api httproute",
     "traefik gateway api",
-    "deploy microservices kubernetes",
     "kubernetes namespace per environment",
     "helm values gitops",
-    "self-hosted developer platform",
+    "self-hosted deployment platform",
   ],
 });
+
+// The three things that happen after someone presses Deploy, in the words a
+// business reader would use. The platform detail follows further down.
+const steps = [
+  {
+    icon: MousePointerClick,
+    title: "A project member clicks Deploy",
+    body: "Any member of the project except viewers can deploy one app, an agent or a whole domain to the environment they pick. They can also ask the assistant in the console, which shows a confirmation card before anything runs.",
+  },
+  {
+    icon: GitCommit,
+    title: "Flightroom commits to Git",
+    body: "The environment's manifests and the app's Helm values go into your repositories as a commit. If the commit fails, nothing is deployed.",
+  },
+  {
+    icon: RefreshCw,
+    title: "Argo CD syncs the cluster",
+    body: "Your Argo CD applies the commit. The app answers on its own URL in that environment, with a TLS certificate.",
+  },
+];
+
+// What lands in the cluster for one app in one environment, as rendered by the
+// GitOps manifests: namespace, envFrom config maps and secrets, an HTTPRoute,
+// liveness and readiness probes.
+const deployGets = [
+  {
+    icon: Boxes,
+    title: "A namespace per environment",
+    body: "Dev, UAT, production and any custom environment each run in their own Kubernetes namespace, so a test never touches what customers use.",
+  },
+  {
+    icon: KeyRound,
+    title: "Config and secrets per environment",
+    body: "ConfigMaps and Secrets are managed in the console and reach the app as environment variables. An agent gets its model API key this way, with a different key per environment if you want one.",
+  },
+  {
+    icon: Globe,
+    title: "Its own URL, with TLS",
+    body: "An HTTPRoute puts the app on its path under the environment's host. cert-manager issues the certificate, HTTP redirects to HTTPS, and HTTPS answers carry HSTS.",
+  },
+  {
+    icon: HeartPulse,
+    title: "Health checks from the template",
+    body: "Liveness and readiness probes point at the health paths the template already exposes, so Kubernetes knows when the app is up from the first deploy.",
+  },
+];
 
 // The deploy path, left to right. Each step names the real object it produces
 // so a platform engineer can map it onto their own cluster.
@@ -51,7 +101,7 @@ const flow = [
   {
     icon: MonitorSmartphone,
     title: "Console",
-    body: "You deploy a service, a frontend or a whole domain to an environment.",
+    body: "Someone deploys an app, an agent or a whole domain to an environment.",
   },
   {
     icon: GitCommit,
@@ -82,7 +132,7 @@ const argoObjects = [
   },
   {
     title: "Read-only repository credentials",
-    body: "GitLab deploy tokens are created and rotated for you. GitHub and Azure DevOps take a read-only token. Tokens are stored encrypted.",
+    body: "GitLab deploy tokens are created and rotated for you. GitHub and Azure DevOps take a read-only token. Tokens are encrypted at rest when SECRETS_ENCRYPTION_KEY is set.",
   },
   {
     title: "An environments ApplicationSet",
@@ -90,7 +140,7 @@ const argoObjects = [
   },
   {
     title: "One ApplicationSet per app",
-    body: "Each backend service and each containerised frontend gets one Application per environment.",
+    body: "Each backend service and each web interface that runs as a container gets one Application per environment.",
   },
 ];
 
@@ -130,7 +180,7 @@ const requirements = [
   { label: "A Git provider", detail: "GitHub, GitLab or Azure DevOps, for the configuration and applications repositories." },
 ];
 
-function SectionHeading({ icon: Icon, children }: Readonly<{ icon: typeof Ship; children: React.ReactNode }>) {
+function SectionHeading({ icon: Icon, children }: Readonly<{ icon: typeof Rocket; children: React.ReactNode }>) {
   return (
     <div className="flex items-center gap-3">
       <div className="p-2 rounded-lg bg-primary/10 text-primary">
@@ -144,21 +194,21 @@ function SectionHeading({ icon: Icon, children }: Readonly<{ icon: typeof Ship; 
 export default function KubernetesPage() {
   return (
     <>
-      <JsonLd schema={breadcrumbSchema([{ name: "Kubernetes", path: "/kubernetes" }])} />
+      <JsonLd schema={breadcrumbSchema([{ name: "One-click deploy", path: "/kubernetes" }])} />
 
       <div className="container mx-auto px-4 py-12 max-w-5xl space-y-20">
         <header className="text-center space-y-6">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-3 py-1 text-sm text-primary">
-            <Ship className="h-4 w-4" />
-            Kubernetes management
+            <Rocket className="h-4 w-4" />
+            One-click deploy
           </div>
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-            Ship services to Kubernetes through Git
+            Deploy apps and agents to your Kubernetes in one click
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Flightroom writes every deploy to Git. Argo CD syncs your cluster from it. The console
-            never needs credentials for your cluster, and nobody hand-writes YAML for each new
-            service.
+            The person who built the app or the agent presses Deploy. Behind that button, every
+            deploy is a Git commit that your Argo CD syncs to your Kubernetes, the way your platform
+            team wants it done.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href={CONSOLE_URL} target="_blank" rel="noopener noreferrer">
@@ -175,6 +225,63 @@ export default function KubernetesPage() {
             </a>
           </div>
         </header>
+
+        <section className="space-y-8">
+          <SectionHeading icon={Users}>Who clicks, and what happens next</SectionHeading>
+          <ol className="grid md:grid-cols-3 gap-6">
+            {steps.map(({ icon: Icon, title, body }, index) => (
+              <li key={title}>
+                <Card className="border-primary/20 h-full">
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-foreground">
+                        <span className="text-primary mr-1">{index + 1}.</span>
+                        {title}
+                      </h3>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="text-muted-foreground">{body}</CardContent>
+                </Card>
+              </li>
+            ))}
+          </ol>
+          <p className="text-muted-foreground leading-relaxed">
+            Deploy ships code that is already on its branch. When the base branch is protected, an
+            AI-written change reaches it through a pull request and your engineers&apos; review first.
+            See{" "}
+            <Link href={PILLARS.build.path} className="text-primary hover:underline">
+              how apps and agents are built
+            </Link>
+            .
+          </p>
+        </section>
+
+        <section className="space-y-8">
+          <SectionHeading icon={Rocket}>What an app or an agent gets on deploy</SectionHeading>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            An agent is an app: a service that reasons with a model and calls your systems. It deploys
+            exactly like any other service, and each one gets the same four things in every
+            environment.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {deployGets.map(({ icon: Icon, title, body }) => (
+              <Card key={title} className="border-primary/20">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+                  </div>
+                </CardHeader>
+                <CardContent className="text-muted-foreground">{body}</CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
 
         <section className="space-y-8">
           <SectionHeading icon={GitBranch}>How a deploy flows</SectionHeading>
@@ -200,7 +307,7 @@ export default function KubernetesPage() {
             ))}
           </ol>
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="border-primary/20">
+            <Card className="border-primary/20 min-w-0">
               <CardHeader>
                 <h3 className="text-lg font-semibold text-foreground">Configuration repository</h3>
               </CardHeader>
@@ -215,7 +322,7 @@ export default function KubernetesPage() {
                 </pre>
               </CardContent>
             </Card>
-            <Card className="border-primary/20">
+            <Card className="border-primary/20 min-w-0">
               <CardHeader>
                 <h3 className="text-lg font-semibold text-foreground">Applications repository</h3>
               </CardHeader>
@@ -224,7 +331,7 @@ export default function KubernetesPage() {
                 <pre className="text-sm overflow-x-auto p-4 bg-background/50 rounded-lg border border-border/30">
                   <code>{`branch dev
   orders-api.yaml
-  checkout-shell.yaml
+  support-agent.yaml
   microservice-chart/`}</code>
                 </pre>
               </CardContent>
@@ -233,7 +340,7 @@ export default function KubernetesPage() {
         </section>
 
         <section className="space-y-8">
-          <SectionHeading icon={RefreshCw}>One click to wire Argo CD</SectionHeading>
+          <SectionHeading icon={RefreshCw}>Wire Argo CD once</SectionHeading>
           <p className="text-lg text-muted-foreground leading-relaxed">
             You already run Argo CD. <strong className="text-foreground">Initialize Argo CD</strong>,
             in the project settings, hands it your repositories through its API. It creates:
@@ -259,15 +366,15 @@ export default function KubernetesPage() {
         </section>
 
         <section className="space-y-8">
-          <SectionHeading icon={Server}>Services from templates</SectionHeading>
+          <SectionHeading icon={Server}>Apps and agents start from templates</SectionHeading>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            A new backend service starts from a template repository, with CI already in place. Every
-            template builds a Docker image that listens on port 8080, with health checks and an
-            OpenAPI path preset.
+            A new backend service, or an agent, starts from a template repository with CI already in
+            place. Every template builds a Docker image that listens on port 8080, with health checks
+            and an OpenAPI path preset.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {templates.map(({ name, health, openApi }) => (
-              <div key={name} className="rounded-xl border border-primary/20 bg-surface/30 p-4 space-y-2">
+              <div key={name} className="min-w-0 rounded-xl border border-primary/20 bg-surface/30 p-4 space-y-2">
                 <h3 className="font-semibold text-foreground">{name}</h3>
                 <dl className="text-xs text-muted-foreground space-y-1">
                   <div>
@@ -290,8 +397,8 @@ export default function KubernetesPage() {
             {[
               "Each template ships an AGENTS.md and a CLAUDE.md, so coding agents follow its conventions from the first change.",
               "CI registers every image version. Deploy through GitOps and Argo CD, or from your own pipeline reporting back with an API key.",
-              "A frontend shell can run as a container too, and deploys the same way as a service.",
-              "Functional domains group services and frontends, so a whole domain can go to an environment in one deploy.",
+              "A web interface can run as a container too, and deploys the same way as a service.",
+              "Functional domains group an app's interfaces and services, so a whole domain can go to an environment in one deploy.",
             ].map((item) => (
               <li key={item} className="flex items-start gap-2 text-muted-foreground">
                 <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
@@ -335,7 +442,7 @@ export default function KubernetesPage() {
             <CardContent className="space-y-3 text-muted-foreground leading-relaxed">
               <p>
                 Register PostgreSQL, MySQL, MariaDB, SQL Server and Oracle connections and test them
-                from the console.
+                from the console, so an app can work with data your company already has.
               </p>
               <p>Flightroom does not provision databases. You bring the ones you already run.</p>
             </CardContent>
@@ -466,8 +573,9 @@ export default function KubernetesPage() {
         <section className="space-y-6">
           <SectionHeading icon={Terminal}>Run Flightroom itself on Kubernetes</SectionHeading>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            The repository includes a Helm chart. Point it at your own MongoDB and Redis: the chart
-            does not bundle them. Autoscaling of the console is optional, through an HPA.
+            The repository includes a Helm chart for the console. Point it at your own MongoDB and
+            Redis: the chart does not bundle them. Autoscaling of the console is optional, through an
+            HPA.
           </p>
           <pre className="text-sm text-muted-foreground overflow-x-auto p-4 bg-background/50 rounded-lg border border-border/30">
             <code>{helmInstall}</code>
@@ -486,13 +594,13 @@ export default function KubernetesPage() {
         </section>
       </div>
 
-      <PillarLinks current="kubernetes" />
+      <PillarLinks current="ship" />
 
       <section className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4 max-w-3xl text-center space-y-6">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
             Connect your Argo CD and{" "}
-            <span className="bg-gradient-primary bg-clip-text text-transparent">deploy your first service</span>
+            <span className="bg-gradient-primary bg-clip-text text-transparent">ship your first app</span>
           </h2>
           <p className="text-lg text-muted-foreground">
             Free to start on the hosted console. Open source under Apache-2.0, so you can self-host it

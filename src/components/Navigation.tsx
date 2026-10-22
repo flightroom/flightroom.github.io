@@ -3,15 +3,15 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { DOCS_URL, SITE_NAME } from '@/lib/seo';
+import { DOCS_URL, PILLARS, SITE_NAME } from '@/lib/seo';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: 'Micro frontends', href: '/micro-frontends' },
-    { name: 'Kubernetes', href: '/kubernetes' },
-    { name: 'AI', href: '/ai' },
+    { name: PILLARS.build.name, href: PILLARS.build.path },
+    { name: PILLARS.ship.name, href: PILLARS.ship.path },
+    { name: PILLARS.enterprise.name, href: PILLARS.enterprise.path },
     { name: 'Documentation', href: DOCS_URL },
     { name: 'FAQ', href: '/faq' },
     { name: 'About', href: '/about' },

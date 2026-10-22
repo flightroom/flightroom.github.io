@@ -13,19 +13,19 @@ import { breadcrumbSchema, faqPageSchema } from "@/lib/structuredData";
 // was a duplicate of a different page and made it a candidate for being dropped
 // from the index entirely. pageMetadata derives it from the path instead.
 export const metadata: Metadata = pageMetadata({
-  title: "FAQ: Micro Frontends, Kubernetes and AI",
+  title: "FAQ: Building and Shipping Apps and Agents",
   description:
-    "Answers about Flightroom: micro frontend releases without host rebuilds, GitOps deploys to Kubernetes with Argo CD, AI changes as pull requests, self-hosting.",
+    "Answers about Flightroom: who can build apps and AI agents, how one-click deploy and review work, SSO and roles, your own AI models, self-hosting, open source.",
   path: "/faq",
   keywords: [
     "Flightroom FAQ",
-    "MFE Orchestrator FAQ",
-    "micro frontend FAQ",
-    "what does MFE stand for",
-    "micro frontend orchestrator",
+    "enterprise AI app builder FAQ",
+    "build AI agents FAQ",
+    "citizen developer FAQ",
+    "self-hosted AI platform FAQ",
+    "bring your own AI model",
     "Argo CD GitOps FAQ",
-    "AI pull request FAQ",
-    "self-hosted developer platform",
+    "AI pull request review",
   ],
 });
 
@@ -40,7 +40,7 @@ export default function FAQPage() {
             Frequently Asked Questions
           </h1>
           <p className="mt-5 max-w-xl mx-auto text-xl text-gray-500 dark:text-gray-300">
-            Flightroom, micro frontends, Kubernetes and AI, answered plainly.
+            Building apps and agents, deploying them, and keeping IT in control, answered plainly.
           </p>
         </div>
 
@@ -48,27 +48,19 @@ export default function FAQPage() {
 
         <div className="mt-16 text-center space-y-3 text-muted-foreground">
           <p>
-            Go deeper on{" "}
-            <Link href={PILLARS.microFrontends.path} className="text-primary hover:underline">
-              micro frontends
+            Go deeper on how people{" "}
+            <Link href={PILLARS.build.path} className="text-primary hover:underline">
+              build with AI
             </Link>
-            ,{" "}
-            <Link href={PILLARS.kubernetes.path} className="text-primary hover:underline">
-              Kubernetes
+            , how{" "}
+            <Link href={PILLARS.ship.path} className="text-primary hover:underline">
+              one-click deploy
             </Link>{" "}
-            or{" "}
-            <Link href={PILLARS.ai.path} className="text-primary hover:underline">
-              AI
-            </Link>
-            . New to the architecture? Start with{" "}
-            <Link href="/what-is-a-micro-frontend" className="text-primary hover:underline">
-              what a micro frontend is
-            </Link>
-            , or how it compares to{" "}
-            <Link href="/module-federation" className="text-primary hover:underline">
-              plain Module Federation
-            </Link>
-            .
+            works, or what IT controls on the{" "}
+            <Link href={PILLARS.enterprise.path} className="text-primary hover:underline">
+              enterprise
+            </Link>{" "}
+            page.
           </p>
         </div>
 
