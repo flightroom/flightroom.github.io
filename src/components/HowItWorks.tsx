@@ -57,7 +57,7 @@ const HowItWorks = () => {
                 className="p-5 rounded-xl border border-border/50 bg-surface/30 backdrop-blur-sm space-y-3"
               >
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                     <step.icon className="h-5 w-5" />
                   </div>
                   <span className="text-xs font-semibold text-muted-foreground">Step {index + 1}</span>

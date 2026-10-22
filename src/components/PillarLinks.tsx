@@ -38,13 +38,13 @@ export default function PillarLinks({ current }: { current?: keyof typeof PILLAR
             className="group block rounded-xl border border-primary/20 bg-surface/30 p-6 hover:border-primary/50 transition-colors"
           >
             <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 rounded-lg bg-primary/10 text-primary">
+              <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                 <Icon className="h-5 w-5" />
               </div>
               <h3 className="text-lg font-semibold text-foreground">{name}</h3>
             </div>
             <p className="text-muted-foreground text-sm mb-3">{blurb}</p>
-            <span className="inline-flex items-center gap-1 text-sm text-primary">
+            <span className="inline-flex items-center gap-1 text-sm text-primary-strong">
               Learn more
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </span>

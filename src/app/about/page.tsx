@@ -71,7 +71,7 @@ export default function AboutPage() {
 
         <section className="space-y-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10 text-primary">
+            <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
               <Clock className="h-6 w-6" />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">The people who know are waiting</h2>
@@ -89,7 +89,7 @@ export default function AboutPage() {
 
         <section className="space-y-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10 text-primary">
+            <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
               <Building2 className="h-6 w-6" />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">AI writes the code. Enterprises need the rest</h2>
@@ -111,18 +111,18 @@ export default function AboutPage() {
 
         <section className="space-y-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10 text-primary">
+            <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
               <KeyRound className="h-6 w-6" />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">What Flightroom does</h2>
           </div>
           <p className="text-lg text-muted-foreground leading-relaxed">
             {SITE_NAME} is that platform. Anyone with a member role describes what they need, and{" "}
-            <Link href={PILLARS.build.path} className="text-primary hover:underline">
+            <Link href={PILLARS.build.path} className="text-primary-strong hover:underline">
               the AI writes it
             </Link>{" "}
             in the company&apos;s Git repositories, starting from Flightroom&apos;s templates. A{" "}
-            <Link href={PILLARS.ship.path} className="text-primary hover:underline">
+            <Link href={PILLARS.ship.path} className="text-primary-strong hover:underline">
               Deploy button
             </Link>{" "}
             ships it to the company&apos;s Kubernetes through GitOps and Argo CD.
@@ -130,7 +130,7 @@ export default function AboutPage() {
           <p className="text-lg text-muted-foreground leading-relaxed">
             IT connects the Git provider, the AI model, single sign-on and roles, and decides which
             branches are protected. Teams then build within those rules. See{" "}
-            <Link href={PILLARS.enterprise.path} className="text-primary hover:underline">
+            <Link href={PILLARS.enterprise.path} className="text-primary-strong hover:underline">
               what that covers
             </Link>
             .
@@ -139,7 +139,7 @@ export default function AboutPage() {
 
         <section className="space-y-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10 text-primary">
+            <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
               <GitPullRequest className="h-6 w-6" />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">What we hold to</h2>
@@ -149,7 +149,7 @@ export default function AboutPage() {
               <Card key={title} className="border-primary/20">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground">{title}</h3>

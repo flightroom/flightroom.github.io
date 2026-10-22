@@ -11,7 +11,7 @@ export default function Moved() {
   return (
     <div className="container mx-auto px-4 py-24 text-center">
       <meta httpEquiv="refresh" content="0; url=/" />
-      <Link href="/" className="text-primary hover:underline">
+      <Link href="/" className="text-primary-strong hover:underline">
         Go to the home page
       </Link>
     </div>

@@ -33,7 +33,7 @@ export default function WhatIsAnAgent() {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-10 items-start">
           <div className="lg:col-span-2 space-y-4 text-center lg:text-left min-w-0">
-            <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary">
+            <div className="inline-flex p-2 rounded-lg bg-primary/10 text-primary-strong">
               <Bot className="h-6 w-6" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
@@ -56,7 +56,7 @@ export default function WhatIsAnAgent() {
                 key={part.title}
                 className="flex items-start gap-4 p-5 rounded-xl border border-border/50 bg-surface/30 backdrop-blur-sm"
               >
-                <div className="p-2 rounded-lg bg-primary/10 text-primary flex-shrink-0">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-strong flex-shrink-0">
                   <part.icon className="h-5 w-5" />
                 </div>
                 <div className="min-w-0">

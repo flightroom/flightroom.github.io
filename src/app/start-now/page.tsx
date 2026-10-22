@@ -78,7 +78,7 @@ export default function StartNowPage() {
         <Card className="border-primary/20 shadow-lg">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-primary/10 text-primary">
+              <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                 <Zap className="h-6 w-6" />
               </div>
               <CardTitle>Hosted console</CardTitle>
@@ -95,9 +95,9 @@ export default function StartNowPage() {
                   href={CONSOLE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 backdrop-blur-sm border-2 border-primary/50 rounded-full px-8 py-4 text-lg font-bold text-white shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/60 transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 backdrop-blur-sm border-2 border-primary/50 rounded-full px-8 py-4 text-lg font-bold text-primary-foreground shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/60 transition-all duration-300 hover:scale-105"
                 >
-                  <Zap className="w-6 h-6 text-white" />
+                  <Zap className="w-6 h-6" />
                   Open the console
                 </a>
               </div>
@@ -108,7 +108,7 @@ export default function StartNowPage() {
         <Card className="border-primary/20 shadow-lg">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-primary/10 text-primary">
+              <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                 <Server className="h-6 w-6" />
               </div>
               <CardTitle>Self-host</CardTitle>
@@ -121,7 +121,7 @@ export default function StartNowPage() {
                   <h4 className="font-medium">{option.name}</h4>
                   <p className="text-sm text-muted-foreground">{option.text}</p>
                   {option.href && (
-                    <a href={option.href} className="text-sm text-primary hover:underline">
+                    <a href={option.href} className="text-sm text-primary-strong hover:underline">
                       Helm chart docs
                     </a>
                   )}

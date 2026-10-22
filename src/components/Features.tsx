@@ -66,7 +66,7 @@ const Features = () => {
           >
             <CardHeader>
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                <pillar.icon className="w-6 h-6 text-primary" />
+                <pillar.icon className="w-6 h-6 text-primary-strong" />
               </div>
               <CardTitle className="text-2xl text-foreground">{pillar.name}</CardTitle>
               <p className="text-muted-foreground mt-2">{pillar.summary}</p>
@@ -75,14 +75,14 @@ const Features = () => {
               <ul className="space-y-3 mb-6">
                 {pillar.points.map((point) => (
                   <li key={point} className="flex items-start gap-3 text-sm text-muted-foreground">
-                    <Check className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
+                    <Check className="h-4 w-4 mt-0.5 text-primary-strong flex-shrink-0" />
                     <span>{point}</span>
                   </li>
                 ))}
               </ul>
               <Link
                 href={pillar.path}
-                className="group mt-auto inline-flex items-center gap-1 text-sm font-medium text-primary"
+                className="group mt-auto inline-flex items-center gap-1 text-sm font-medium text-primary-strong"
               >
                 More on {pillar.name}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />

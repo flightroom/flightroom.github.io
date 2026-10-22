@@ -27,4 +27,4 @@ export {
   DialogHeader,
   DialogTitle,
   Input,
-} from "@mfe-orchestrator/design-system";
+} from "@flightroom/design-system";

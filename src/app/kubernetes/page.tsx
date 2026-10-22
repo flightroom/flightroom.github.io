@@ -183,7 +183,7 @@ const requirements = [
 function SectionHeading({ icon: Icon, children }: Readonly<{ icon: typeof Rocket; children: React.ReactNode }>) {
   return (
     <div className="flex items-center gap-3">
-      <div className="p-2 rounded-lg bg-primary/10 text-primary">
+      <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
         <Icon className="h-6 w-6" />
       </div>
       <h2 className="text-2xl md:text-3xl font-bold text-foreground">{children}</h2>
@@ -198,7 +198,7 @@ export default function KubernetesPage() {
 
       <div className="container mx-auto px-4 py-12 max-w-5xl space-y-20">
         <header className="text-center space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-3 py-1 text-sm text-primary">
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-3 py-1 text-sm text-primary-strong">
             <Rocket className="h-4 w-4" />
             One-click deploy
           </div>
@@ -234,11 +234,11 @@ export default function KubernetesPage() {
                 <Card className="border-primary/20 h-full">
                   <CardHeader>
                     <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                      <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                         <Icon className="h-5 w-5" />
                       </div>
                       <h3 className="text-lg font-semibold text-foreground">
-                        <span className="text-primary mr-1">{index + 1}.</span>
+                        <span className="text-primary-strong mr-1">{index + 1}.</span>
                         {title}
                       </h3>
                     </div>
@@ -252,7 +252,7 @@ export default function KubernetesPage() {
             Deploy ships code that is already on its branch. When the base branch is protected, an
             AI-written change reaches it through a pull request and your engineers&apos; review first.
             See{" "}
-            <Link href={PILLARS.build.path} className="text-primary hover:underline">
+            <Link href={PILLARS.build.path} className="text-primary-strong hover:underline">
               how apps and agents are built
             </Link>
             .
@@ -271,7 +271,7 @@ export default function KubernetesPage() {
               <Card key={title} className="border-primary/20">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground">{title}</h3>
@@ -290,7 +290,7 @@ export default function KubernetesPage() {
               <li key={title} className="flex flex-col lg:flex-row items-center gap-2 lg:flex-1">
                 <div className="w-full h-full rounded-xl border border-primary/20 bg-surface/30 p-4 text-center lg:text-left">
                   <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="font-semibold text-foreground">{title}</h3>
@@ -299,8 +299,8 @@ export default function KubernetesPage() {
                 </div>
                 {index < flow.length - 1 && (
                   <>
-                    <ArrowDown className="h-5 w-5 text-primary/70 shrink-0 lg:hidden" aria-hidden />
-                    <ArrowRight className="h-5 w-5 text-primary/70 shrink-0 hidden lg:block" aria-hidden />
+                    <ArrowDown className="h-5 w-5 text-primary-strong/70 shrink-0 lg:hidden" aria-hidden />
+                    <ArrowRight className="h-5 w-5 text-primary-strong/70 shrink-0 hidden lg:block" aria-hidden />
                   </>
                 )}
               </li>
@@ -358,7 +358,7 @@ export default function KubernetesPage() {
           <ul className="space-y-3">
             {argoGuards.map((item) => (
               <li key={item} className="flex items-start gap-2 text-muted-foreground">
-                <ShieldCheck className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                <ShieldCheck className="h-5 w-5 text-primary-strong mt-0.5 shrink-0" />
                 <span>{item}</span>
               </li>
             ))}
@@ -401,7 +401,7 @@ export default function KubernetesPage() {
               "Functional domains group an app's interfaces and services, so a whole domain can go to an environment in one deploy.",
             ].map((item) => (
               <li key={item} className="flex items-start gap-2 text-muted-foreground">
-                <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                <CheckCircle className="h-5 w-5 text-primary-strong mt-0.5 shrink-0" />
                 <span>{item}</span>
               </li>
             ))}
@@ -412,7 +412,7 @@ export default function KubernetesPage() {
           <Card className="border-primary/20">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                   <Boxes className="h-6 w-6" />
                 </div>
                 <h2 className="text-2xl font-bold text-foreground">Environments are namespaces</h2>
@@ -433,7 +433,7 @@ export default function KubernetesPage() {
           <Card className="border-primary/20">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                   <Database className="h-6 w-6" />
                 </div>
                 <h2 className="text-2xl font-bold text-foreground">Database connections</h2>
@@ -488,7 +488,7 @@ export default function KubernetesPage() {
               "Two apps on the same path, or two environments on the same host, refuse the deploy.",
             ].map((item) => (
               <li key={item} className="flex items-start gap-2 text-muted-foreground">
-                <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                <CheckCircle className="h-5 w-5 text-primary-strong mt-0.5 shrink-0" />
                 <span>{item}</span>
               </li>
             ))}
@@ -500,7 +500,7 @@ export default function KubernetesPage() {
               href={`${GITHUB_REPO_URL}/blob/development/docs/EXPOSURE.md#moving-off-one-kong-per-environment`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="text-primary-strong hover:underline"
             >
               exposure guide in the repository
             </a>{" "}
@@ -531,7 +531,7 @@ export default function KubernetesPage() {
               <Card key={title} className="border-primary/20">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground">{title}</h3>
@@ -547,7 +547,7 @@ export default function KubernetesPage() {
           <Card className="border-primary/40">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                   <FileCode className="h-6 w-6" />
                 </div>
                 <h2 className="text-2xl font-bold text-foreground">What you need</h2>
@@ -583,11 +583,11 @@ export default function KubernetesPage() {
           <p className="text-muted-foreground">
             Prefer something else? Flightroom also runs with Docker Compose, as a single all-in-one
             container, or from Terraform and OpenTofu. See the{" "}
-            <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+            <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-primary-strong hover:underline">
               documentation
             </a>{" "}
             or the{" "}
-            <a href={GITHUB_REPO_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+            <a href={GITHUB_REPO_URL} target="_blank" rel="noopener noreferrer" className="text-primary-strong hover:underline">
               source on GitHub
             </a>.
           </p>

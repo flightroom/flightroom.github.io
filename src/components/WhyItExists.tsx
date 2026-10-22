@@ -68,7 +68,7 @@ const WhyItExists = () => {
     <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16 max-w-3xl mx-auto">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary">Who builds</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary-strong">Who builds</p>
           <h2 className="text-3xl md:text-5xl font-bold text-foreground">
             Built by the people
             <span className="bg-gradient-primary bg-clip-text text-transparent"> who know the work</span>
@@ -88,12 +88,12 @@ const WhyItExists = () => {
             >
               <div className="flex items-center justify-between gap-3 mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                     <item.icon className="h-5 w-5" />
                   </div>
                   <h3 className="font-semibold text-foreground">{item.team}</h3>
                 </div>
-                <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 px-2.5 py-0.5 text-xs text-primary">
+                <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 px-2.5 py-0.5 text-xs text-primary-strong">
                   {item.kind === "Agent" ? <Bot className="h-3 w-3" /> : <AppWindow className="h-3 w-3" />}
                   {item.kind}
                 </span>
@@ -109,7 +109,7 @@ const WhyItExists = () => {
           protected base branch keeps every change under review.{" "}
           <Link
             href={PILLARS.build.path}
-            className="group inline-flex items-center gap-1 font-medium text-primary"
+            className="group inline-flex items-center gap-1 font-medium text-primary-strong"
           >
             How building with AI works
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />

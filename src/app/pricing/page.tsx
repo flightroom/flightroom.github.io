@@ -29,7 +29,7 @@ const pricingPlans = [
     ],
     cta: "Get Started",
     popular: false,
-    icon: <Zap className="w-6 h-6 text-primary" />
+    icon: <Zap className="w-6 h-6 text-primary-strong" />
   },
   {
     name: "Team",
@@ -46,7 +46,7 @@ const pricingPlans = [
     ],
     cta: "Start Free Trial",
     popular: true,
-    icon: <Users className="w-6 h-6 text-primary" />
+    icon: <Users className="w-6 h-6 text-primary-strong" />
   },
   {
     name: "Enterprise",
@@ -61,7 +61,7 @@ const pricingPlans = [
     ],
     cta: "Contact Sales",
     popular: false,
-    icon: <Server className="w-6 h-6 text-primary" />
+    icon: <Server className="w-6 h-6 text-primary-strong" />
   }
 ];
 
@@ -119,7 +119,7 @@ export default function PricingPage() {
                     <ul className="space-y-3">
                       {plan.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
-                          <CheckCircle className="w-5 h-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-primary-strong mr-2 mt-0.5 flex-shrink-0" />
                           <span className="text-foreground">{feature}</span>
                         </li>
                       ))}
@@ -138,11 +138,11 @@ export default function PricingPage() {
           </div>
 
           <div className="mt-16 bg-surface/50 backdrop-blur-sm p-8 rounded-xl border border-border/50 max-w-4xl mx-auto">
-            <h3 className="text-xl font-semibold mb-4 text-center text-white">Everything in all plans</h3>
+            <h3 className="text-xl font-semibold mb-4 text-center text-foreground">Everything in all plans</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
               {includedFeatures.map((feature, index) => (
                 <div key={index} className="flex items-center">
-                  <Check className="w-4 h-4 text-primary mr-2" />
+                  <Check className="w-4 h-4 text-primary-strong mr-2" />
                   <span className="text-sm text-muted-foreground">{feature}</span>
                 </div>
               ))}

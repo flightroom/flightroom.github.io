@@ -1,28 +1,29 @@
 /*
  * The site consumes the shared design system: fonts, colors,
- * radii and shadows come from @mfe-orchestrator/design-system/theme.css so the
+ * radii and shadows come from @flightroom/design-system/theme.css so the
  * public website, the console and the documentation stay visually identical.
  * The site is brand-dark, so <html> carries the `dark` class (see layout.tsx).
  */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..700;1,300..700&display=swap");
 @import "tailwindcss";
-@import "@mfe-orchestrator/design-system/theme.css";
-@source "../../node_modules/@mfe-orchestrator/design-system/dist";
+@import "@flightroom/design-system/theme.css";
+@source "../../node_modules/@flightroom/design-system/dist";
 
 /* Site-only tokens on top of the design system: marketing surfaces and glows
- * that have no equivalent in the product UI. Values derive from the design
- * system dark palette (background 220 26% 14%, primary 262 83% 66%). */
+ * that have no equivalent in the product UI. Surfaces follow the design system
+ * dark tokens (background #112631, card #193441, muted #223F4F); the glow is
+ * pumpkin-300 #FEAF84 and the gradients run pumpkin #FE7F2D -> sunglow #FCCA46. */
 :root {
-  --primary-glow: 262 83% 76%;
-  --surface: 220 20% 18%;
-  --surface-variant: 220 15% 22%;
+  --primary-glow: 21 98% 76%; /* pumpkin-300 #FEAF84 */
+  --surface: var(--card);
+  --surface-variant: var(--muted);
 
-  --gradient-primary: linear-gradient(135deg, hsl(262 83% 66%) 0%, hsl(262 83% 76%) 100%);
-  --gradient-surface: linear-gradient(135deg, hsl(220 26% 14%) 0%, hsl(220 20% 18%) 100%);
-  --gradient-hero: linear-gradient(135deg, hsl(220 26% 14%) 0%, hsl(220 20% 18%) 50%, hsl(220 15% 25%) 100%);
+  --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(44 97% 63%) 100%);
+  --gradient-surface: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--card)) 100%);
+  --gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--card)) 50%, hsl(var(--muted)) 100%);
 
-  --shadow-primary: 0 10px 30px -10px hsl(262 83% 66% / 0.3);
-  --shadow-glow: 0 0 40px hsl(262 83% 76% / 0.2);
+  --shadow-primary: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+  --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.2);
 }
 
 @theme {
@@ -95,5 +96,5 @@ body::before {
 }
 
 .iub__us-widget {
-  background-color: color-mix(in oklab, var(--color-black) 30%, transparent);
+  background-color: color-mix(in oklab, var(--color-charcoal-950) 30%, transparent);
 }

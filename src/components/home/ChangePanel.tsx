@@ -66,7 +66,7 @@ export default function ChangePanel() {
         </div>
 
         <div className="rounded-xl border border-primary/30 bg-background/50 p-4 mb-4">
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary mb-2">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary-strong mb-2">
             <MessageSquareText className="w-4 h-4" />
             Describe what you need
           </div>
@@ -96,13 +96,13 @@ export default function ChangePanel() {
         <ol className="space-y-3">
           {steps.map((step) => (
             <li key={step.label} className="flex items-start gap-3">
-              <div className="p-2 rounded-lg bg-primary/10 text-primary flex-shrink-0">
+              <div className="p-2 rounded-lg bg-primary/10 text-primary-strong flex-shrink-0">
                 <step.icon className="w-4 h-4" />
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
                   {step.label}
-                  <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-primary-strong flex-shrink-0" />
                 </div>
                 <div className="text-xs font-mono text-muted-foreground break-all">{step.detail}</div>
                 {step.note && <div className="text-xs text-muted-foreground">{step.note}</div>}
@@ -111,7 +111,7 @@ export default function ChangePanel() {
           ))}
 
           <li className="flex items-start gap-3">
-            <div className="p-2 rounded-lg bg-primary/10 text-primary flex-shrink-0">
+            <div className="p-2 rounded-lg bg-primary/10 text-primary-strong flex-shrink-0">
               <Rocket className="w-4 h-4" />
             </div>
             <div className="min-w-0 flex-1">
@@ -131,13 +131,13 @@ export default function ChangePanel() {
           </li>
 
           <li className="flex items-start gap-3">
-            <div className="p-2 rounded-lg bg-primary/10 text-primary flex-shrink-0">
+            <div className="p-2 rounded-lg bg-primary/10 text-primary-strong flex-shrink-0">
               <Globe className="w-4 h-4" />
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
                 Live
-                <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-primary-strong flex-shrink-0" />
               </div>
               <div className="text-xs font-mono text-muted-foreground break-all">
                 https://invoices.example.com · TLS
