@@ -37,7 +37,7 @@ export const PRODUCT = {
   /** The category we want to be found in. */
   category: "Open-source platform for micro frontends and services on Kubernetes",
   /** The promise, in the words a team would use. */
-  oneLiner: "Build, ship and run your whole product on Kubernetes.",
+  oneLiner: "Build, ship and run your product on Kubernetes.",
   /** The mechanism, for people who need to know how before they trust it. */
   definition:
     "Flightroom is an open-source platform that takes micro frontends and backend services from template to Kubernetes. It versions every build, releases micro frontends without rebuilding the host, deploys services through GitOps with Argo CD, and lets anyone on the team describe a change in plain language and get it back as a pull request.",
