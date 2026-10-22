@@ -1,56 +1,50 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { Button, Card, CardContent, CardHeader } from "@/components/design-system";
-import { ArrowRight, GitBranch, GitPullRequest, HardDrive, Layers, Scale, Server, Sparkles, UserCheck } from "lucide-react";
+import { ArrowRight, Building2, Clock, GitBranch, GitPullRequest, HardDrive, KeyRound, Scale, UserCheck } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
 import PillarLinks from "@/components/PillarLinks";
-import { CONSOLE_URL, FORMER_NAME, GITHUB_REPO_URL, PILLARS, SITE_NAME, pageMetadata } from "@/lib/seo";
+import { CONSOLE_URL, GITHUB_REPO_URL, PILLARS, SITE_NAME, pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/structuredData";
 
 export const metadata: Metadata = pageMetadata({
   title: "Why We Built Flightroom",
   description:
-    "Flightroom began as MFE Orchestrator, to release micro frontends without rebuilding the shell. Why it grew to cover backend services, Kubernetes and AI changes.",
+    "The people who know what software is needed should be able to build it with AI, in your repositories, on your infrastructure, under your sign-on and roles.",
   path: "/about",
   keywords: [
     "about flightroom",
-    "mfe orchestrator rename",
-    "open source developer platform",
-    "micro frontend platform history",
-    "gitops developer platform",
+    "open source enterprise ai platform",
+    "it backlog business apps",
+    "gitops platform",
+    "self-hosted ai app builder",
   ],
 });
 
-const firstAttempt = [
-  "A shell application that played the role of the classic frontend",
-  "Each micro frontend in its own repository, built as a web component",
-  "Every micro frontend published as a private library",
-  "All of them installed as dependencies of the shell and released together",
-];
-
-const whatBroke = [
-  "Releasing one micro frontend took two builds: its own, then the shell's",
-  "The shell build grew until it ran out of memory",
-  "Deploys took longer and longer",
-  "Versions were hard to track across teams",
-  "Rollbacks were slow",
+// What an enterprise needs around AI-written code before it can run in
+// production. Each item maps to something Flightroom actually does.
+const enterpriseNeeds = [
+  "The code in the company's own repositories, not in someone else's sandbox",
+  "Review by the engineers who own those repositories",
+  "Deploys onto the company's own infrastructure",
+  "Sign-in through the company's identity provider, with roles that decide who does what",
 ];
 
 const principles = [
   {
     icon: Scale,
     title: "Open source",
-    body: "Apache-2.0, with the templates under MIT. Self-hosting is free.",
+    body: "Apache-2.0, with the templates under MIT. Self-hosting is free, and you can read every line that runs.",
   },
   {
     icon: GitBranch,
     title: "Git is the source of truth",
-    body: "Deploys to Kubernetes are commits that Argo CD syncs. AI changes arrive as branches and pull requests.",
+    body: "AI changes arrive as branches and pull requests. Deploys to Kubernetes are commits that your Argo CD syncs.",
   },
   {
     icon: HardDrive,
-    title: "Your infrastructure, your storage",
-    body: "Builds go to the storage you choose, services run on your cluster through your Argo CD, and you pick the AI model.",
+    title: "Your infrastructure, your models",
+    body: "Run Flightroom in your cloud or on-prem. Apps run on your Kubernetes, and the AI is the model your organization connects.",
   },
   {
     icon: UserCheck,
@@ -70,107 +64,76 @@ export default function AboutPage() {
             Why we built {SITE_NAME}
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We wanted to release one micro frontend without rebuilding the shell. That tool worked,
-            and then we needed the rest of the product on the same road: backend services,
-            Kubernetes, and a way for more people to contribute changes.
-          </p>
-          <p className="text-sm text-muted-foreground">
-            {SITE_NAME} was previously called {FORMER_NAME}. Same project, new name.
+            The people who know what software their team needs should be able to build it. The
+            company should still own the code, the infrastructure and the keys.
           </p>
         </header>
 
         <section className="space-y-6">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-primary/10 text-primary">
-              <Layers className="h-6 w-6" />
+              <Clock className="h-6 w-6" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">It started with micro frontends</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">The people who know are waiting</h2>
           </div>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Our team split the frontend across repositories so that every release had a reference
-            tag. Months later we could still say exactly what we had shipped. The way we wired the
-            pieces together cost us the independence we were after.
+            In every company, the people closest to the work know exactly what tool would help.
+            Operations wants a dashboard over two systems. Finance wants an approval flow that is not
+            a spreadsheet. Customer care wants an assistant that drafts replies from the order history.
           </p>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="border-primary/20">
-              <CardHeader>
-                <h3 className="text-lg font-semibold text-foreground">What we tried first</h3>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-muted-foreground list-disc pl-5">
-                  {firstAttempt.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="border-primary/20">
-              <CardHeader>
-                <h3 className="text-lg font-semibold text-foreground">What broke</h3>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-muted-foreground list-disc pl-5">
-                  {whatBroke.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Each of those becomes a request in the IT backlog, behind work that matters more to
+            someone else. Most never get built.
+          </p>
+        </section>
+
+        <section className="space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-primary/10 text-primary">
+              <Building2 className="h-6 w-6" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">AI writes the code. Enterprises need the rest</h2>
           </div>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            So we stopped bundling micro frontends into the shell and loaded them at runtime instead.
-            Every build is stored, each environment serves the versions assigned to it, and a
-            rollback re-activates the previous deployment without a rebuild. That was the first version,
-            and it is still the core of{" "}
-            <Link href={PILLARS.microFrontends.path} className="text-primary hover:underline">
-              Flightroom&apos;s micro frontend management
+            AI models can now write a working app or agent from a plain description. That is not
+            enough for a company to run it. Before anything reaches production, an enterprise needs:
+          </p>
+          <Card className="border-primary/20">
+            <CardContent className="pt-6">
+              <ul className="space-y-2 text-muted-foreground list-disc pl-5">
+                {enterpriseNeeds.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section className="space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-primary/10 text-primary">
+              <KeyRound className="h-6 w-6" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">What Flightroom does</h2>
+          </div>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            {SITE_NAME} is that platform. Anyone with a member role describes what they need, and{" "}
+            <Link href={PILLARS.build.path} className="text-primary hover:underline">
+              the AI writes it
+            </Link>{" "}
+            in the company&apos;s Git repositories, starting from Flightroom&apos;s templates. A{" "}
+            <Link href={PILLARS.ship.path} className="text-primary hover:underline">
+              Deploy button
+            </Link>{" "}
+            ships it to the company&apos;s Kubernetes through GitOps and Argo CD.
+          </p>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            IT connects the Git provider, the AI model, single sign-on and roles, and decides which
+            branches are protected. Teams then build within those rules. See{" "}
+            <Link href={PILLARS.enterprise.path} className="text-primary hover:underline">
+              what that covers
             </Link>
             .
-          </p>
-        </section>
-
-        <section className="space-y-6">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10 text-primary">
-              <Server className="h-6 w-6" />
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Why it grew into services and Kubernetes</h2>
-          </div>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            A frontend is only half a feature. The same team that released micro frontends on their
-            own schedule still shipped the APIs behind them the old way. We wanted the backend on the
-            same paved road.
-          </p>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            So Flightroom now starts services from templates and deploys them to{" "}
-            <Link href={PILLARS.kubernetes.path} className="text-primary hover:underline">
-              Kubernetes through Git and Argo CD
-            </Link>
-            , with one namespace per environment and Gateway API routes in front. Frontends and the
-            services they call are grouped in functional domains and ship together.
-          </p>
-        </section>
-
-        <section className="space-y-6">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10 text-primary">
-              <Sparkles className="h-6 w-6" />
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Why AI</h2>
-          </div>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            The people who know what should change are often not the people who can write the code. A
-            product manager spots the wrong label, a designer wants the spacing fixed, an analyst needs
-            one more column. Each of those used to become a ticket and a wait.
-          </p>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            With{" "}
-            <Link href={PILLARS.ai.path} className="text-primary hover:underline">
-              AI in Flightroom
-            </Link>
-            , they describe the change in plain words and get it back on a branch or as a pull request.
-            Engineers review it like any other contribution. The platform already knew where every
-            repository, environment and pipeline was, so it was the natural place to put this.
           </p>
         </section>
 

@@ -64,21 +64,20 @@ export default function OpengraphImage() {
               letterSpacing: "-0.02em",
             }}
           >
-            From idea to Kubernetes, with the whole team
+            Apps and AI agents, built by anyone
           </div>
           <div style={{ fontSize: 34, color: "#a5b0c9", lineHeight: 1.35 }}>
-            Micro frontends, backend services and GitOps deploys with Argo CD.
-            Anyone can describe a change and get a pull request.
+            Shipped in one click to your Kubernetes, with your SSO, your roles and your AI models.
           </div>
         </div>
 
         {/* Proof row */}
         <div style={{ display: "flex", alignItems: "center", gap: 40, fontSize: 26, color: "#8b5cf6" }}>
-          <div style={{ display: "flex" }}>Micro frontends</div>
+          <div style={{ display: "flex" }}>Build with AI</div>
           <div style={{ display: "flex", color: "#3b4463" }}>·</div>
-          <div style={{ display: "flex" }}>Kubernetes &amp; Argo CD</div>
+          <div style={{ display: "flex" }}>One-click deploy</div>
           <div style={{ display: "flex", color: "#3b4463" }}>·</div>
-          <div style={{ display: "flex" }}>AI for everyone</div>
+          <div style={{ display: "flex" }}>Enterprise-ready</div>
         </div>
       </div>
     ),

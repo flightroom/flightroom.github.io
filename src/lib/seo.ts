@@ -2,20 +2,13 @@ import type { Metadata } from "next";
 
 export const SITE_URL = "https://flightroom.dev";
 export const CONSOLE_URL = "https://console.flightroom.dev";
-/**
- * The docs are still published from the old host: the flightroom/documentation
- * repository has no Pages site yet, and flightroom.dev/documentation is a 404.
- * Switch this (and the docs sitemap in next-sitemap.config.js) once it moves.
- */
-export const DOCS_URL = "https://mfe-orchestrator.dev/documentation";
-/** The docs' golden path: zero to a deployed micro frontend and a rollback in ~10 minutes. */
-export const QUICK_START_URL = `${DOCS_URL}/docs/quick-start`;
+export const DOCS_URL = "https://flightroom.dev/documentation";
 export const GITHUB_URL = "https://github.com/flightroom";
 export const GITHUB_REPO_URL = "https://github.com/flightroom/flightroom";
 /** The project's X account. It predates the rename, so it still carries the old handle. */
 export const X_URL = "https://x.com/mfeorchestrator";
 /** The all-in-one image that actually exists on Docker Hub today. */
-export const DOCKER_IMAGE = "lory1990/mfe-orchestrator:all-in-one";
+export const DOCKER_IMAGE = "lory1990/flightroom:all-in-one";
 
 /**
  * The social card. src/app/opengraph-image.png is picked up by Next's file
@@ -35,12 +28,12 @@ export const FORMER_NAME = "MFE Orchestrator";
  */
 export const PRODUCT = {
   /** The category we want to be found in. */
-  category: "Open-source platform for micro frontends and services on Kubernetes",
-  /** The promise, in the words a team would use. */
-  oneLiner: "Build, ship and run your product on Kubernetes.",
+  category: "Enterprise platform for AI-built apps and agents",
+  /** The promise, in the words a buyer would use. */
+  oneLiner: "Apps and AI agents, built by anyone, shipped in one click.",
   /** The mechanism, for people who need to know how before they trust it. */
   definition:
-    "Flightroom is an open-source platform that takes micro frontends and backend services from template to Kubernetes. It versions every build, releases micro frontends without rebuilding the host, deploys services through GitOps with Argo CD, and lets anyone on the team describe a change in plain language and get it back as a pull request.",
+    "Flightroom is an open-source enterprise platform where anyone can build applications and AI agents by describing them in plain language. The AI writes the code in your own Git repositories, your engineers review it, and one click deploys it to your Kubernetes through GitOps and Argo CD, with your single sign-on, your roles and your AI models.",
 } as const;
 
 /**
@@ -48,26 +41,21 @@ export const PRODUCT = {
  * navigation and the structured data name them the same way.
  */
 export const PILLARS = {
-  microFrontends: { name: "Micro frontends", path: "/micro-frontends" },
-  kubernetes: { name: "Kubernetes", path: "/kubernetes" },
-  ai: { name: "AI", path: "/ai" },
+  build: { name: "Build with AI", path: "/ai" },
+  ship: { name: "One-click deploy", path: "/kubernetes" },
+  enterprise: { name: "Enterprise", path: "/enterprise" },
 } as const;
 
-/**
- * "MFE" alone is an ambiguous acronym, so the vocabulary here always pairs it
- * with the spelled-out term, and covers the three spellings people actually
- * type: "micro frontend", "micro-frontend" and "microfrontend".
- */
 export const CORE_KEYWORDS = [
   "Flightroom",
-  "micro frontend platform",
-  "micro frontend orchestration",
-  "Kubernetes developer platform",
+  "enterprise AI app builder",
+  "build AI agents without code",
+  "citizen developer platform",
+  "AI app generator enterprise",
+  "one-click deploy Kubernetes",
   "Argo CD GitOps",
   "internal developer platform",
-  "AI code changes pull request",
-  "MFE orchestrator",
-  "Module Federation",
+  "self-hosted AI platform",
 ];
 
 interface PageMetaInput {

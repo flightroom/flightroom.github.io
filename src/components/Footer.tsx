@@ -2,18 +2,16 @@
 
 import Link from 'next/link';
 import { useEffect } from 'react';
-import { DOCS_URL, FORMER_NAME, GITHUB_URL, SITE_NAME } from '@/lib/seo';
+import { DOCS_URL, GITHUB_URL, PILLARS, SITE_NAME } from '@/lib/seo';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'Micro frontends', href: '/micro-frontends' },
-    { name: 'Kubernetes', href: '/kubernetes' },
-    { name: 'AI', href: '/ai' },
-    { name: 'What is a micro frontend?', href: '/what-is-a-micro-frontend' },
-    { name: 'Module Federation', href: '/module-federation' },
+    { name: PILLARS.build.name, href: PILLARS.build.path },
+    { name: PILLARS.ship.name, href: PILLARS.ship.path },
+    { name: PILLARS.enterprise.name, href: PILLARS.enterprise.path },
     { name: 'Documentation', href: DOCS_URL },
     { name: 'FAQ', href: '/faq' },
     { name: 'Get started', href: '/start-now' },
@@ -52,10 +50,9 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-bold text-xl mb-4">{SITE_NAME}</h3>
             <p className="text-white/60 text-sm">
-              Open-source platform for micro frontends and services on Kubernetes, with AI-assisted
-              changes that arrive as pull requests.
+              Open-source enterprise platform where anyone builds apps and AI agents by describing
+              them, and ships them in one click to your Kubernetes.
             </p>
-            <p className="text-white/40 text-xs mt-2">Formerly {FORMER_NAME}.</p>
           </div>
 
           {/* Navigation Links */}

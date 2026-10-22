@@ -9,7 +9,7 @@ export function WaitingListSection() {
         Join the newsletter
       </h2>
       <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-        New releases, features and guides from Flightroom, in your inbox.
+        Product news, new releases and guides on building and shipping apps and AI agents with Flightroom.
       </p>
       <div className="max-w-2xl mx-auto">
         <WaitingListForm />

@@ -1,44 +1,38 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, FolderGit2, GitPullRequest, MessageSquareText, Rocket } from "lucide-react";
 
 /**
- * Services and micro frontends share the first steps and diverge at deploy
- * time. The two lanes below the steps make that split visible, so neither
- * audience has to guess which half of the page applies to them.
+ * Four steps, in the order they really happen. Review sits between Generate
+ * and Deploy on purpose: the click that ships is the last step, not the first.
  */
 
 const steps = [
   {
-    title: "Start from a template",
+    icon: MessageSquareText,
+    title: "Describe",
     description:
-      "Pick a service template (Node.js + Fastify, Python + FastAPI, Spring Boot, Quarkus) or a micro frontend host or remote for React, Angular or Vue. Service templates ship AGENTS.md and CLAUDE.md, so coding agents follow the conventions.",
+      "Write what the app or agent should do, the way you would explain it to a colleague. Flightroom proposes the web interfaces and backend services it needs, and you adjust the proposal.",
   },
   {
-    title: "Build in your CI",
+    icon: FolderGit2,
+    title: "Generate",
     description:
-      "Ready-made pipelines for GitHub Actions, GitLab CI and Azure DevOps. CI registers each image version or uploads each micro frontend build. An API covers everything else.",
+      "Flightroom creates each repository in your Git provider from one of its templates, with CI included, and the AI writes the first version on a branch.",
   },
   {
-    title: "Deploy per environment",
+    icon: GitPullRequest,
+    title: "Review",
     description:
-      "For services and container frontends, each environment is a Kubernetes namespace. Micro frontends are served per environment from their deployment. Deploy one app, or a whole functional domain at once.",
+      "Every AI change starts on a branch and can be opened as a pull request. Protect the base branch and it goes through your code review and your CI.",
   },
   {
-    title: "Expose and roll back",
+    icon: Rocket,
+    title: "Deploy",
     description:
-      "Services get an HTTPRoute on their environment's Gateway, with TLS from cert-manager. A service rolls back by deploying its previous image version again. A micro frontend rolls back by re-activating its previous snapshot, with no rebuild.",
+      "One click deploys it. Flightroom commits the deployment to Git, your Argo CD syncs it, and the app gets its own URL with TLS in each environment.",
   },
 ];
 
-const lanes = [
-  {
-    name: "Backend services",
-    stages: ["Template", "CI builds the image", "Commit to Git", "Argo CD syncs", "HTTPRoute on the Gateway"],
-  },
-  {
-    name: "Micro frontends",
-    stages: ["Template", "CI uploads the build", "Immutable snapshot", "Host loads it at runtime", "One-click rollback"],
-  },
-];
+const path = ["A description", "Your repositories", "Pull request", "Argo CD", "Live URL"];
 
 const HowItWorks = () => {
   return (
@@ -47,19 +41,26 @@ const HowItWorks = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-              From template
-              <span className="bg-gradient-primary bg-clip-text text-transparent"> to production</span>
+              From a description
+              <span className="bg-gradient-primary bg-clip-text text-transparent"> to a live URL</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Four steps for a backend service or a micro frontend. The two split at deploy time.
+              The same four steps for an app or an agent, in your Git provider, your CI and your
+              cluster.
             </p>
           </div>
 
-          <ol className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <ol className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {steps.map((step, index) => (
-              <li key={step.title} className="space-y-3">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <span className="text-primary font-bold">{index + 1}</span>
+              <li
+                key={step.title}
+                className="p-5 rounded-xl border border-border/50 bg-surface/30 backdrop-blur-sm space-y-3"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <step.icon className="h-5 w-5" />
+                  </div>
+                  <span className="text-xs font-semibold text-muted-foreground">Step {index + 1}</span>
                 </div>
                 <h3 className="font-semibold text-foreground text-lg">{step.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
@@ -67,33 +68,24 @@ const HowItWorks = () => {
             ))}
           </ol>
 
-          <div className="space-y-4">
-            {lanes.map((lane) => (
-              <div
-                key={lane.name}
-                className="p-5 rounded-xl border border-primary/20 bg-surface/30 backdrop-blur-sm"
-              >
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-4">
-                  {lane.name}
-                </h3>
-                <ol className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
-                  {lane.stages.map((stage, index) => (
-                    <li key={stage} className="flex items-center gap-2 md:gap-3">
-                      {index > 0 && (
-                        <ArrowRight
-                          className="hidden md:block h-4 w-4 text-muted-foreground flex-shrink-0"
-                          aria-hidden="true"
-                        />
-                      )}
-                      <span className="px-3 py-1.5 rounded-md bg-background/50 border border-border/50 text-sm text-foreground">
-                        {stage}
-                      </span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
+          <ol
+            aria-label="The path a request takes"
+            className="flex flex-col md:flex-row md:items-center md:justify-center gap-2 md:gap-3 p-5 rounded-xl border border-primary/20 bg-surface/30 backdrop-blur-sm"
+          >
+            {path.map((stage, index) => (
+              <li key={stage} className="flex items-center gap-2 md:gap-3">
+                {index > 0 && (
+                  <ArrowRight
+                    className="hidden md:block h-4 w-4 text-muted-foreground flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                )}
+                <span className="px-3 py-1.5 rounded-md bg-background/50 border border-border/50 text-sm text-foreground">
+                  {stage}
+                </span>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </div>
     </section>

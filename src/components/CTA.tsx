@@ -10,12 +10,12 @@ const CTA = () => {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-              Start with one service
-              <span className="bg-gradient-primary bg-clip-text text-transparent"> or one micro frontend</span>
+              Start with one app
+              <span className="bg-gradient-primary bg-clip-text text-transparent"> or one agent</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Open the hosted console, connect a repository and create your first environment.
-              Add the rest of the product when you are ready.
+              Open the hosted console, connect a repository and an AI model, and describe what your
+              team needs. Move it to your own cloud whenever you are ready.
             </p>
           </div>
 

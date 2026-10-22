@@ -59,15 +59,15 @@ export function softwareApplicationSchema() {
       description: "Free to start on the hosted console; free to self-host.",
     },
     featureList: [
-      "Micro frontend version management per environment",
-      "Deploy a micro frontend without rebuilding the host application",
-      "Canary releases and one-click rollback to a previous snapshot",
-      "Module Federation configuration for Vite and Webpack",
-      "Backend service templates for Node.js, Python, Spring Boot and Quarkus",
-      "GitOps deploys to Kubernetes with Argo CD",
-      "Gateway API exposure per environment",
-      "Plain-language change requests delivered as branches or pull requests",
+      "Build applications and AI agents by describing them in plain language",
+      "AI writes the code on a branch in your own Git repositories, starting from Flightroom's templates",
+      "Pull request review, branch protection and CI stay in place",
+      "One-click deploy to Kubernetes through GitOps and Argo CD",
+      "Environments mapped to Kubernetes namespaces, with a URL and TLS per environment",
+      "Backend templates for Node.js, Python, Spring Boot and Quarkus; web interfaces in React, Angular or Vue",
+      "Single sign-on with Microsoft Entra ID, Google and Auth0, with organization and project roles",
       "Bring your own AI model: Claude, GPT on Azure OpenAI, Gemini",
+      "Self-host with Helm, Docker Compose, a single container or Terraform/OpenTofu",
       "Remote MCP server for Claude, Claude Code, Cursor, VS Code and Gemini CLI",
     ],
     author: { "@id": `${SITE_URL}/#organization` },
@@ -87,36 +87,6 @@ export function faqPageSchema() {
         text: faq.answer,
       },
     })),
-  };
-}
-
-/**
- * A single question/answer pair rendered as a standalone QAPage-style entity,
- * used by the definitional pages so their answer is eligible on its own.
- */
-export function definedTermSchema({
-  name,
-  description,
-  path,
-  alternateNames = [],
-}: {
-  name: string;
-  description: string;
-  path: string;
-  alternateNames?: string[];
-}) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "DefinedTerm",
-    "@id": `${SITE_URL}${path}#term`,
-    name,
-    description,
-    alternateName: alternateNames,
-    inDefinedTermSet: {
-      "@type": "DefinedTermSet",
-      name: "Micro frontend architecture",
-      url: `${SITE_URL}/what-is-a-micro-frontend`,
-    },
   };
 }
 
@@ -142,33 +112,33 @@ export function howToSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: "How to ship a change with Flightroom",
+    name: "How to build and ship an app with Flightroom",
     description:
-      "Go from a template or an existing repository to a change running in an environment, with a pull request and CI in between.",
+      "Describe an application or an AI agent, review what the AI wrote, and deploy it to your Kubernetes in one click.",
     step: [
       {
         "@type": "HowToStep",
         position: 1,
-        name: "Create from a template or connect a repository",
-        text: "Start a micro frontend or a backend service from a template, or connect an existing GitHub, GitLab or Azure DevOps repository.",
+        name: "Describe what you need",
+        text: "Say what the application or the agent should do. Flightroom starts from one of its templates.",
       },
       {
         "@type": "HowToStep",
         position: 2,
-        name: "Make the change and open a pull request",
-        text: "Edit the code yourself, or describe the change in plain language and let the AI agent propose it on a branch. Open a pull request for review.",
+        name: "The AI writes it on a branch",
+        text: "The AI writes the code on a branch in your Git repository, using the AI model your organization chose. The base branch is untouched.",
       },
       {
         "@type": "HowToStep",
         position: 3,
-        name: "Let CI build and register the version",
-        text: "The pipeline builds the artifact or image and registers the new version with Flightroom.",
+        name: "Review the pull request",
+        text: "Open a pull request. With the base branch protected, your engineers review it and your CI runs before it merges.",
       },
       {
         "@type": "HowToStep",
         position: 4,
-        name: "Deploy to an environment",
-        text: "Micro frontends are served at runtime without rebuilding the host. Services are committed to Git and synced to Kubernetes by Argo CD. A micro frontend rolls back by re-activating its previous snapshot; a service rolls back by deploying its previous image version again.",
+        name: "Deploy in one click",
+        text: "Press Deploy. The change is committed to Git and Argo CD syncs it to the Kubernetes environment you picked.",
       },
     ],
   };

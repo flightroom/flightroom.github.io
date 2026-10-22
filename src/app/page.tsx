@@ -3,7 +3,8 @@ import Hero from "../components/Hero";
 import HowItWorks from "../components/HowItWorks";
 import WhyItExists from "../components/WhyItExists";
 import CTA from "../components/CTA";
-import Heritage from "@/components/home/Heritage";
+import WhatIsAnAgent from "@/components/home/WhatIsAnAgent";
+import Guardrails from "@/components/home/Guardrails";
 import OpenSource from "@/components/home/OpenSource";
 import { Metadata } from "next";
 import { WaitingListSection } from "@/components/waitingList/WaitingListSection";
@@ -11,22 +12,21 @@ import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/seo";
 import { howToSchema, softwareApplicationSchema } from "@/lib/structuredData";
 
-const TITLE = "Micro Frontends & Services on Kubernetes | Flightroom";
+const TITLE = "Build and Ship AI Apps and Agents | Flightroom";
 
 export const metadata: Metadata = {
   ...pageMetadata({
     title: TITLE,
     description:
-      "Flightroom is the open-source platform to build, ship and run micro frontends and backend services on Kubernetes, with GitOps, Argo CD and AI pull requests.",
+      "Flightroom lets anyone in your company build apps and AI agents by describing them, then ship them in one click to your Kubernetes, inside IT's guardrails.",
     path: "/",
     keywords: [
-      "Kubernetes developer platform",
-      "micro frontend platform",
-      "GitOps deployment Argo CD",
-      "deploy microservices to Kubernetes",
-      "AI code change pull request",
-      "open source internal developer platform",
-      "MFE Orchestrator",
+      "build AI agents for business",
+      "enterprise AI app platform",
+      "AI internal tools builder",
+      "one-click deploy to Kubernetes",
+      "self-hosted AI app builder",
+      "open source citizen development platform",
     ],
   }),
   // The layout's title template does not apply to the root page, which sits in
@@ -40,10 +40,11 @@ export default function Home() {
     <div className="min-h-screen">
       <JsonLd schema={[softwareApplicationSchema(), howToSchema()]} />
       <Hero />
-      <Features />
       <WhyItExists />
+      <WhatIsAnAgent />
+      <Features />
       <HowItWorks />
-      <Heritage />
+      <Guardrails />
       <OpenSource />
       <CTA />
       <WaitingListSection />

@@ -10,7 +10,6 @@ import {
   DOCKER_IMAGE,
   DOCS_URL,
   GITHUB_REPO_URL,
-  QUICK_START_URL,
   SITE_NAME,
   pageMetadata,
 } from "@/lib/seo";
@@ -22,11 +21,11 @@ export const metadata: Metadata = pageMetadata({
     "Start on the free hosted console, or self-host Flightroom with Docker, Docker Compose, a Helm chart on Kubernetes or Terraform and OpenTofu.",
   path: "/start-now",
   keywords: [
-    "self-hosted Kubernetes developer platform",
+    "self-hosted AI app builder",
     "Flightroom Helm chart",
     "Flightroom docker compose",
     "install Flightroom",
-    "free micro frontend platform",
+    "enterprise AI agent platform",
   ],
 })
 
@@ -34,7 +33,7 @@ const selfHostOptions = [
   {
     name: "All-in-one container",
     text: "One container for a quick trial on a laptop.",
-    code: `docker run -d --name flightroom -p 8080:80 -v flightroom-data:/data ${DOCKER_IMAGE}`,
+    code: `docker run -d --name flightroom -p 8080:80 -v flightroom-data:/data \\\n  -e SECRETS_ENCRYPTION_KEY="$(openssl rand -base64 32)" \\\n  ${DOCKER_IMAGE}`,
   },
   {
     name: "Docker Compose",
@@ -53,10 +52,10 @@ const selfHostOptions = [
 ];
 
 const nextSteps = [
-  { title: "Follow the quick start", text: "From zero to a deployed micro frontend and a rollback.", href: QUICK_START_URL },
-  { title: "Connect a repository", text: "GitHub, GitLab or Azure DevOps.", href: `${DOCS_URL}/docs/repositories/connect/github` },
-  { title: "Initialize Argo CD", text: "One button in project settings sets up GitOps deploys to Kubernetes. Needs Argo CD 2.8+.", href: `${GITHUB_REPO_URL}/blob/development/docs/ARGOCD.md` },
-  { title: "Configure an AI model", text: "Bring your own: Claude, GPT on Azure OpenAI or Gemini. Set once per organization.", href: `${DOCS_URL}/docs/ai/overview` },
+  { title: "Connect your Git provider", text: "GitHub, GitLab or Azure DevOps. Your code stays in your repositories.", href: `${DOCS_URL}/docs/repositories/connect/github`, cta: "Read the docs" },
+  { title: "Choose your AI model", text: "Bring your own: Claude, GPT on Azure OpenAI or Gemini. Set once per organization.", href: DOCS_URL, cta: "Read the docs" },
+  { title: "Connect Argo CD", text: "Connect it once in project settings and Flightroom sets up GitOps deploys to your Kubernetes. Needs Argo CD 2.8+.", href: `${GITHUB_REPO_URL}/blob/development/docs/ARGOCD.md`, cta: "Read the guide" },
+  { title: "Invite your team", text: "Add members from the console. Roles decide who can build, review and deploy.", href: CONSOLE_URL, cta: "Open the console" },
 ];
 
 export default function StartNowPage() {
@@ -88,7 +87,7 @@ export default function StartNowPage() {
           <CardContent>
             <div className="space-y-6">
               <p className="text-muted-foreground">
-                Nothing to install. Sign in, connect a repository and create your first project.
+                Nothing to install. Sign in, connect your Git provider and describe your first app.
                 Free to start.
               </p>
               <div className="pt-4 flex justify-center">
@@ -171,7 +170,7 @@ export default function StartNowPage() {
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">{step.text}</p>
                 <Button variant="secondary" asChild>
-                  <Link href={step.href}>Read the docs</Link>
+                  <Link href={step.href}>{step.cta}</Link>
                 </Button>
               </CardContent>
             </Card>
