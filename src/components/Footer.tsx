@@ -2,22 +2,23 @@
 
 import Link from 'next/link';
 import { useEffect } from 'react';
+import { DOCS_URL, FORMER_NAME, GITHUB_URL, SITE_NAME } from '@/lib/seo';
 
-/** `showBlog` comes from the root layout: the entry only appears once the CMS
- *  has a published post (see hasPosts in @/lib/blog). */
-export default function Footer({ showBlog = false }: { showBlog?: boolean }) {
+export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const navItems = [
     { name: 'Home', href: '/' },
+    { name: 'Micro frontends', href: '/micro-frontends' },
+    { name: 'Kubernetes', href: '/kubernetes' },
+    { name: 'AI', href: '/ai' },
     { name: 'What is a micro frontend?', href: '/what-is-a-micro-frontend' },
     { name: 'Module Federation', href: '/module-federation' },
-    { name: 'Documentation', href: 'https://mfe-orchestrator.dev/documentation' },
-    // { name: 'Pricing', href: '/pricing' },
-    ...(showBlog ? [{ name: 'Blog', href: '/blog' }] : []),
+    { name: 'Documentation', href: DOCS_URL },
     { name: 'FAQ', href: '/faq' },
     { name: 'Get started', href: '/start-now' },
     { name: 'About', href: '/about' },
+    { name: 'GitHub', href: GITHUB_URL },
   ];
 
   const legalLinks = [
@@ -49,11 +50,12 @@ export default function Footer({ showBlog = false }: { showBlog?: boolean }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand Section */}
           <div>
-            <h3 className="text-white font-bold text-xl mb-4">MFE Orchestrator</h3>
+            <h3 className="text-white font-bold text-xl mb-4">{SITE_NAME}</h3>
             <p className="text-white/60 text-sm">
-              The open-source control plane for micro frontends — versioning, per-environment
-              configuration, canary releases and rollback, without rebuilding the host.
+              Open-source platform for micro frontends and services on Kubernetes, with AI-assisted
+              changes that arrive as pull requests.
             </p>
+            <p className="text-white/40 text-xs mt-2">Formerly {FORMER_NAME}.</p>
           </div>
 
           {/* Navigation Links */}
@@ -95,7 +97,7 @@ export default function Footer({ showBlog = false }: { showBlog?: boolean }) {
         {/* Bottom Section */}
         <div className="mt-8 pt-8 border-t border-white/10">
           <p className="text-center text-white/40 text-sm">
-            &copy; {currentYear} MFE Orchestrator. All rights reserved.
+            &copy; {currentYear} {SITE_NAME}. All rights reserved.
           </p>
         </div>
       </div>

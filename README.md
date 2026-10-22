@@ -1,52 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Flightroom website
 
-## Getting Started
+Source of [flightroom.dev](https://flightroom.dev), the public site for Flightroom (formerly MFE Orchestrator). Next.js 15 static export, Tailwind v4, React 19.
 
-First, run the development server:
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev      # http://localhost:3020
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`@mfe-orchestrator/design-system` comes from GitHub Packages. Authenticate first:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm config set //npm.pkg.github.com/:_authToken <token with read:packages>
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Build
 
-## The blog
+```bash
+pnpm build    # static export to ./out, then next-sitemap writes sitemap and robots.txt
+```
 
-Posts are written in a hosted [Sanity](https://www.sanity.io) Studio and read
-from its API during `pnpm run build`, so what gets deployed is static HTML like
-the rest of the site. Publishing a post fires a webhook that rebuilds and
-redeploys the site.
+## Deploy
 
-- Authoring: https://mfe-orchestrator.sanity.studio
-- Setup, webhook, and how the code is laid out: [docs/blog.md](docs/blog.md)
-- Working on the blog offline: `BLOG_FIXTURES=1 pnpm dev` renders two fake posts
-- Building with no blog at all: `SANITY_PROJECT_ID=off pnpm run build`
+Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and publishes `./out` to GitHub Pages. Pull requests against `main` run the same build without deploying.
 
-The Studio itself lives in [`studio/`](studio/) as a separate pnpm project, with
-its own workspace file and lockfile, so the site's `pnpm install` never pulls
-Sanity in. It never enters the site's bundle.
+## Where things live
 
-## Learn More
+- `src/lib/seo.ts`: shared constants (site name, URLs, Docker image, product definition, page metadata helper). Pages import from here instead of hardcoding.
+- `src/lib/structuredData.ts`: JSON-LD builders.
+- `src/lib/faqs.ts`: FAQ content, also used for the FAQ structured data.
+- `next-sitemap.config.js`: sitemap priorities and robots.txt.
+- `public/llms.txt`: pointer for LLM crawlers.
 
-To learn more about Next.js, take a look at the following resources:
+## Social card
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`src/app/opengraph-image.png` is a committed PNG. To regenerate it after changing copy, follow the steps in the header comment of `scripts/opengraph-image.tsx`.

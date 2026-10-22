@@ -64,21 +64,21 @@ export default function OpengraphImage() {
               letterSpacing: "-0.02em",
             }}
           >
-            Ship micro frontends without rebuilding the host
+            From idea to Kubernetes, with the whole team
           </div>
           <div style={{ fontSize: 34, color: "#a5b0c9", lineHeight: 1.35 }}>
-            Open-source control plane for micro frontend deployment —
-            versioning, canary releases and instant rollback.
+            Micro frontends, backend services and GitOps deploys with Argo CD.
+            Anyone can describe a change and get a pull request.
           </div>
         </div>
 
         {/* Proof row */}
         <div style={{ display: "flex", alignItems: "center", gap: 40, fontSize: 26, color: "#8b5cf6" }}>
-          <div style={{ display: "flex" }}>Module Federation</div>
+          <div style={{ display: "flex" }}>Micro frontends</div>
           <div style={{ display: "flex", color: "#3b4463" }}>·</div>
-          <div style={{ display: "flex" }}>Multi-cloud &amp; on-premise</div>
+          <div style={{ display: "flex" }}>Kubernetes &amp; Argo CD</div>
           <div style={{ display: "flex", color: "#3b4463" }}>·</div>
-          <div style={{ display: "flex" }}>Open source</div>
+          <div style={{ display: "flex" }}>AI for everyone</div>
         </div>
       </div>
     ),

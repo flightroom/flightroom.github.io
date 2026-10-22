@@ -4,21 +4,21 @@ import { Card, CardContent } from "@/components/design-system";
 export const metadata: Metadata = {
   title: "Cookie Policy",
   alternates: {
-    canonical: 'https://mfe-orchestrator.dev/cookie-policy',
+    canonical: 'https://flightroom.dev/cookie-policy',
   },
-  description: "Cookie Policy for MFE Orchestrator - Learn about how we use cookies",
+  description: "Cookie Policy for Flightroom - Learn about how we use cookies",
   openGraph: {
     title: "Cookie Policy",
-    description: "Cookie Policy for MFE Orchestrator - Learn about how we use cookies",
-    url: "https://mfe-orchestrator.dev/cookie-policy",
-    siteName: "MFE Orchestrator",
+    description: "Cookie Policy for Flightroom - Learn about how we use cookies",
+    url: "https://flightroom.dev/cookie-policy",
+    siteName: "Flightroom",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Cookie Policy",
-    description: "Cookie Policy for MFE Orchestrator - Learn about how we use cookies",
+    description: "Cookie Policy for Flightroom - Learn about how we use cookies",
   },
 };
 

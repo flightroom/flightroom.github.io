@@ -23,8 +23,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  // The CMS Studio is a separate project, with its own tsconfig and its own
-  // dependencies (studio/package.json): it must not be typechecked or bundled
-  // with the site.
-  "exclude": ["node_modules", "studio"]
+  "exclude": ["node_modules"]
 }

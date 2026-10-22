@@ -3,18 +3,16 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { DOCS_URL, SITE_NAME } from '@/lib/seo';
 
-/** `showBlog` comes from the root layout: the entry only appears once the CMS
- *  has a published post (see hasPosts in @/lib/blog). */
-export default function Navigation({ showBlog = false }: { showBlog?: boolean }) {
+export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: 'What is an MFE?', href: '/what-is-a-micro-frontend' },
-    { name: 'Module Federation', href: '/module-federation' },
-    { name: 'Documentation', href: 'https://mfe-orchestrator.dev/documentation' },
-    // { name: 'Pricing', href: '/pricing' },
-    ...(showBlog ? [{ name: 'Blog', href: '/blog' }] : []),
+    { name: 'Micro frontends', href: '/micro-frontends' },
+    { name: 'Kubernetes', href: '/kubernetes' },
+    { name: 'AI', href: '/ai' },
+    { name: 'Documentation', href: DOCS_URL },
     { name: 'FAQ', href: '/faq' },
     { name: 'About', href: '/about' },
   ];
@@ -25,7 +23,7 @@ export default function Navigation({ showBlog = false }: { showBlog?: boolean })
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="text-white font-bold text-xl">
-              MFE Orchestrator
+              {SITE_NAME}
             </Link>
           </div>
           

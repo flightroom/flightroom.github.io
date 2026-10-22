@@ -3,14 +3,14 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Check, Zap, Shield, Users, Server, GitBranch, Clock, CheckCircle } from "lucide-react";
 import { PricingCardButton } from "@/components/PricingCardButton";
 import { WaitingListSection } from "@/components/waitingList/WaitingListSection";
-import { pageMetadata } from "@/lib/seo";
+import { SITE_NAME, pageMetadata } from "@/lib/seo";
 
 // Pricing was intentionally removed from the navigation, but the page stayed
 // crawlable and still advertised plans. Keeping it out of the index avoids
 // ranking for pricing queries the product cannot currently answer.
 export const metadata: Metadata = pageMetadata({
   title: "Pricing",
-  description: "Pricing information for MFE Orchestrator.",
+  description: `Pricing information for ${SITE_NAME}.`,
   path: "/pricing",
   noindex: true,
 })
@@ -25,8 +25,7 @@ const pricingPlans = [
       "Up to 3 microfrontends",
       "1 environment",
       "Community support",
-      "Basic analytics",
-      "Git integration"
+      "Git integration (GitHub, GitLab, Azure DevOps)"
     ],
     cta: "Get Started",
     popular: false,
@@ -40,10 +39,10 @@ const pricingPlans = [
       "Up to 20 microfrontends",
       "3 environments",
       "Priority support",
-      "Advanced analytics",
       "Team collaboration",
       "CI/CD integration",
-      "Custom domains"
+      "GitOps deploys with Argo CD",
+      "AI changes delivered as pull requests"
     ],
     cta: "Start Free Trial",
     popular: true,
@@ -70,10 +69,10 @@ const pricingPlans = [
 
 const includedFeatures = [
   "Unlimited deployments",
-  "Version history",
-  "Team collaboration",
+  "Immutable snapshots and rollback",
+  "Roles for orgs and projects",
   "CI/CD integration",
-  "Cloud integration"
+  "Bring your own AI model"
 ];
 
 export default function PricingPage() {

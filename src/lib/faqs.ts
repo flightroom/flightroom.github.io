@@ -13,6 +13,16 @@ export interface FAQItem {
 
 export const faqs: FAQItem[] = [
   {
+    question: "What is Flightroom?",
+    answer:
+      "Flightroom is an open-source platform that takes micro frontends and backend services from template to Kubernetes. It versions every build, releases micro frontends without rebuilding the host, deploys services through GitOps with Argo CD, and lets anyone on the team describe a change in plain language and get it back on a branch or as a pull request.",
+  },
+  {
+    question: "Is Flightroom the same as MFE Orchestrator?",
+    answer:
+      "Yes. Flightroom is the new name of MFE Orchestrator: same project, same team, wider scope. The micro frontend core is still there, and the platform now also deploys backend services to Kubernetes and makes AI code changes. Some artifacts, such as the all-in-one Docker image, still carry the old name.",
+  },
+  {
     question: "What does MFE stand for?",
     answer:
       "MFE stands for micro frontend (also written micro-frontend or microfrontend): a single, independently built and deployed piece of a web application, combined with others at runtime to form one product.",
@@ -20,68 +30,76 @@ export const faqs: FAQItem[] = [
   {
     question: "What is a micro frontend orchestrator?",
     answer:
-      "A micro frontend orchestrator is the control plane that decides which version of each micro frontend an environment serves, and delivers that decision to the host application at runtime. Without one, the list of micro frontends and their URLs is hardcoded in the host, so every release requires rebuilding and redeploying the host.",
+      "A micro frontend orchestrator is the control plane that decides which version of each micro frontend an environment serves, and delivers that decision to the host application at runtime. Without one, the list of micro frontends and their URLs is hardcoded in the host, so every release means rebuilding and redeploying the host. Flightroom started as exactly this, under the name MFE Orchestrator.",
   },
   {
-    question: "What does MFE Orchestrator actually do?",
+    question: "Can I release a micro frontend without rebuilding the host?",
     answer:
-      "MFE Orchestrator stores the build artifacts of each micro frontend, keeps a version history per environment, and serves the runtime configuration your host application reads on startup. Releasing a new version means pointing an environment at a different version — no host rebuild, no redeploy of the shell, and a rollback is the same operation in reverse.",
+      "Yes. The host reads the micro frontends it should load at runtime from the configuration Flightroom serves. You publish a new build, deploy it to an environment, and the change is live on the next page load. Every deployment is an immutable snapshot, and per-environment variables reach the browser at boot, so one build runs in every environment.",
   },
   {
-    question:
-      "How is this different from using Module Federation on its own?",
+    question: "How is Flightroom different from Module Federation alone?",
     answer:
-      "Module Federation gives you the loading mechanism; it does not tell you which version to load. Teams usually end up hand-maintaining a remotes configuration file, committed to the host repository, which puts every micro frontend release back behind a host deploy. MFE Orchestrator generates that configuration from a versioned registry and serves it per environment, so the mechanism stays and the manual bookkeeping goes away.",
+      "Module Federation gives you the loading mechanism; it does not tell you which version to load. Teams usually end up maintaining a remotes file by hand in the host repository, which puts every micro frontend release back behind a host deploy. Flightroom generates the Module Federation configuration for Vite and Webpack and serves the versions per environment, so the mechanism stays and the bookkeeping goes away.",
   },
   {
-    question:
-      "Do I have to rebuild the host application to release a micro frontend?",
+    question: "How does Flightroom deploy to Kubernetes?",
     answer:
-      "No. The host resolves the micro frontends it should load at runtime from the configuration MFE Orchestrator serves. You build and upload one micro frontend, set the version for the target environment, and the change is live on the next page load.",
+      "Flightroom deploys through Git. Every deploy commits to a configuration repository, with a namespace, ConfigMaps, Secrets and a Gateway per environment, and optionally to an applications repository with a Helm values file per service. Argo CD then syncs those repositories to the cluster. Each environment maps to a Kubernetes namespace, and apps are exposed through the Gateway API with TLS from cert-manager.",
   },
   {
-    question: "Which frameworks and bundlers are supported?",
+    question: "Do I need Argo CD?",
     answer:
-      "MFE Orchestrator is framework-agnostic. Micro frontends can be built with React, Angular, Vue, Svelte or plain JavaScript, and it integrates with Module Federation under both Vite and Webpack. Each team can pick its own stack, because the orchestrator deals with builds and versions rather than with your framework.",
+      "Only for the GitOps deploys to Kubernetes, and it has to be version 2.8 or later. Micro frontend releases do not need it. Backend services can also be deployed by your own pipeline, which reports the version back to Flightroom with an API key. When you use Argo CD, one button in the project settings creates the AppProject, the repository credentials and the ApplicationSets for you.",
   },
   {
-    question: "Do I need to change my existing setup?",
+    question: "Does the Flightroom console need access to my Kubernetes cluster?",
     answer:
-      "Very little. You add the MFE Orchestrator client library — or point your existing Module Federation configuration at the orchestrator — and add an upload step to the pipeline that already builds each micro frontend. Your application code, framework and repository layout stay as they are.",
+      "No. The console talks only to the Argo CD API and to your Git repositories. It commits the desired state to Git, and Argo CD, running in your cluster, syncs it. Argo CD reads the repositories with read-only credentials.",
   },
   {
-    question: "Where are the build artifacts stored?",
+    question: "Which backend stacks are supported?",
     answer:
-      "In storage you control. MFE Orchestrator uploads to AWS S3, Azure Blob Storage or Google Cloud Storage, and can also serve micro frontends hosted on-premise. The same project can use different storage per environment.",
+      "Flightroom ships service templates for Node.js with Fastify, Python with FastAPI, Spring Boot and Quarkus. Each one builds a Docker image listening on port 8080, with health checks and OpenAPI paths preset, and includes AGENTS.md and CLAUDE.md files so coding agents know the conventions. You can also register a database connection for PostgreSQL, MySQL, MariaDB, SQL Server or Oracle and test it from the console.",
   },
   {
-    question: "How do rollbacks work?",
+    question: "Can non-developers really change code with Flightroom?",
     answer:
-      "A rollback is a version change, not a rebuild. Every uploaded version stays available, so you select the previous version for the affected environment and it is served immediately. Because the host is not rebuilt, the time to recover does not depend on your build pipeline.",
+      "Yes, with engineers still in control. A product manager, designer or analyst describes the change in plain words, and Flightroom's AI agent edits the real repository and pushes the result to its own branch. From there they open a pull request, and engineers review and merge it as usual. An admin connects the Git provider and picks the AI model once; after that, every project member can ask. Viewers cannot.",
   },
   {
-    question: "What is a canary release for a micro frontend?",
+    question: "Which AI models does Flightroom support?",
     answer:
-      "A canary release serves a new version of a micro frontend to a fraction of your users while the rest continue on the current version. MFE Orchestrator handles the split at the orchestration layer, so you can raise the share gradually and stop the rollout by changing one setting.",
+      "Flightroom works with Claude through the Anthropic API, Azure AI Foundry or AWS Bedrock, with GPT through Azure OpenAI, and with Gemini. Each organization configures its own models and credentials, and admins can restrict which models a project may use or turn AI off for it.",
   },
   {
-    question: "How does it fit into my CI/CD?",
+    question: "Is AI-generated code merged automatically?",
     answer:
-      "MFE Orchestrator ships pipeline integrations for GitHub Actions, GitLab CI and Azure DevOps, and exposes an API for anything else. The pipeline that already builds a micro frontend gains one step: publish the artifact and register the version.",
+      "No. Every proposal is committed to its own ai/ branch and the base branch is untouched until a person acts. You can open a pull request for review, apply the change to the base branch, or discard it. Apply is never a forced push, so a protected branch refuses it. The agent does not run, build or test code, and it cannot change CI files or lockfiles: your CI checks the branch like any other.",
   },
   {
-    question: "Can I self-host MFE Orchestrator?",
+    question: "Can I use Claude, Claude Code or Cursor with Flightroom?",
     answer:
-      "Yes. MFE Orchestrator is open source and runs in your own infrastructure with Docker Compose, which is the option to choose when artifacts and configuration have to stay inside your network. There is also a hosted console if you would rather not run it yourself.",
+      "Yes. Flightroom runs a remote MCP server that Claude, Claude Code, Cursor, VS Code, Gemini CLI and other MCP clients can connect to. Clients sign in with OAuth 2.1 and PKCE, or a project API key, and your role is checked again on every call. A coding agent on your machine can clone a repository, edit it locally and submit the change, which Flightroom pushes to a new branch with a pull request. On self-hosted installs the MCP server is off until you enable it.",
   },
   {
-    question: "Is it free?",
+    question: "Which CI/CD providers and storage does Flightroom work with?",
     answer:
-      "Yes. MFE Orchestrator is free and open source, and the hosted console is free to start with. Self-hosting has no licence cost.",
+      "Flightroom ships ready-made pipelines for GitHub Actions, GitLab CI and Azure DevOps, and also accepts builds through its API or a manual upload. Micro frontend artifacts are stored in the built-in hub, AWS S3, Azure Blob Storage, Google Cloud Storage, or a custom URL for on-premise hosting.",
   },
   {
-    question: "How do shared dependencies work across micro frontends?",
+    question: "How do rollbacks work for micro frontends?",
     answer:
-      "Shared dependencies are handled by Module Federation's sharing mechanism, which MFE Orchestrator configures for you: common libraries such as React are loaded once and reused across micro frontends instead of being bundled into each one, which keeps the total payload down and the runtime consistent.",
+      "A rollback re-activates the previous deployment snapshot. Every deployment is immutable, so going back is one click and nothing is rebuilt. Because the host is not rebuilt either, the time to recover does not depend on your build pipeline.",
+  },
+  {
+    question: "Does Flightroom support canary releases?",
+    answer:
+      "Yes, for micro frontends. A canary serves a new version to part of your users while the rest stay on the current one. You choose a random percentage, a split that stays sticky for each session, or an explicit list of enrolled users.",
+  },
+  {
+    question: "Is Flightroom free and open source, and can I self-host it?",
+    answer:
+      "Yes. Flightroom is open source under the Apache-2.0 license, with templates under MIT. The hosted console is free to start, and self-hosting has no licence cost. You can run it on Kubernetes with the Helm chart, with Docker Compose, as a single all-in-one container, or with Terraform or OpenTofu. Self-hosted installs send one anonymous daily telemetry ping, which you can turn off.",
   },
 ];
