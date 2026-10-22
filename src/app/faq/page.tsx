@@ -39,7 +39,7 @@ export default function FAQPage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
             Frequently Asked Questions
           </h1>
-          <p className="mt-5 max-w-xl mx-auto text-xl text-gray-500 dark:text-gray-300">
+          <p className="mt-5 max-w-xl mx-auto text-xl text-foreground-secondary">
             Building apps and agents, deploying them, and keeping IT in control, answered plainly.
           </p>
         </div>
@@ -49,15 +49,15 @@ export default function FAQPage() {
         <div className="mt-16 text-center space-y-3 text-muted-foreground">
           <p>
             Go deeper on how people{" "}
-            <Link href={PILLARS.build.path} className="text-primary hover:underline">
+            <Link href={PILLARS.build.path} className="text-primary-strong hover:underline">
               build with AI
             </Link>
             , how{" "}
-            <Link href={PILLARS.ship.path} className="text-primary hover:underline">
+            <Link href={PILLARS.ship.path} className="text-primary-strong hover:underline">
               one-click deploy
             </Link>{" "}
             works, or what IT controls on the{" "}
-            <Link href={PILLARS.enterprise.path} className="text-primary hover:underline">
+            <Link href={PILLARS.enterprise.path} className="text-primary-strong hover:underline">
               enterprise
             </Link>{" "}
             page.

@@ -180,7 +180,7 @@ const checklist = [
 function SectionHeading({ icon: Icon, children }: Readonly<{ icon: typeof Server; children: React.ReactNode }>) {
   return (
     <div className="flex items-center gap-3">
-      <div className="p-2 rounded-lg bg-primary/10 text-primary shrink-0">
+      <div className="p-2 rounded-lg bg-primary/10 text-primary-strong shrink-0">
         <Icon className="h-6 w-6" />
       </div>
       <h2 className="text-2xl md:text-3xl font-bold text-foreground">{children}</h2>
@@ -193,7 +193,7 @@ function CheckList({ items }: Readonly<{ items: string[] }>) {
     <ul className="space-y-3">
       {items.map((item) => (
         <li key={item} className="flex items-start gap-2 text-muted-foreground">
-          <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+          <CheckCircle className="h-5 w-5 text-primary-strong mt-0.5 shrink-0" />
           <span className="min-w-0">{item}</span>
         </li>
       ))}
@@ -208,7 +208,7 @@ export default function EnterprisePage() {
 
       <div className="container mx-auto px-4 py-12 max-w-5xl space-y-20">
         <header className="text-center space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-3 py-1 text-sm text-primary">
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-3 py-1 text-sm text-primary-strong">
             <Building2 className="h-4 w-4" />
             For IT, security and platform teams
           </div>
@@ -248,7 +248,7 @@ export default function EnterprisePage() {
               <Card key={title} className="border-primary/20">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground">{title}</h3>
@@ -271,7 +271,7 @@ export default function EnterprisePage() {
               <Card key={title} className="border-primary/20 min-w-0">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground">{title}</h3>
@@ -280,7 +280,7 @@ export default function EnterprisePage() {
                 <CardContent className="text-muted-foreground space-y-2 break-words">
                   <p>{body}</p>
                   {href && (
-                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-sm text-primary-strong hover:underline">
                       Installation guide
                     </a>
                   )}
@@ -301,15 +301,15 @@ export default function EnterprisePage() {
           <SectionHeading icon={Users}>Your identity and roles</SectionHeading>
           <p className="text-lg text-muted-foreground leading-relaxed">
             People sign in with{" "}
-            <a href={`${DOCS_URL}/docs/self-hosting/enable-sso/Azure`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+            <a href={`${DOCS_URL}/docs/self-hosting/enable-sso/Azure`} target="_blank" rel="noopener noreferrer" className="text-primary-strong hover:underline">
               Microsoft Entra ID
             </a>
             ,{" "}
-            <a href={`${DOCS_URL}/docs/self-hosting/enable-sso/Google`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+            <a href={`${DOCS_URL}/docs/self-hosting/enable-sso/Google`} target="_blank" rel="noopener noreferrer" className="text-primary-strong hover:underline">
               Google
             </a>{" "}
             or{" "}
-            <a href={`${DOCS_URL}/docs/self-hosting/enable-sso/Auth0`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+            <a href={`${DOCS_URL}/docs/self-hosting/enable-sso/Auth0`} target="_blank" rel="noopener noreferrer" className="text-primary-strong hover:underline">
               Auth0
             </a>
             , or with local accounts. Then two layers of roles decide what they can reach and what
@@ -409,7 +409,7 @@ export default function EnterprisePage() {
           <CheckList items={guardrails} />
           <p className="text-muted-foreground">
             The full picture of how people build with AI is on{" "}
-            <Link href={PILLARS.build.path} className="text-primary hover:underline">
+            <Link href={PILLARS.build.path} className="text-primary-strong hover:underline">
               {PILLARS.build.name}
             </Link>
             .
@@ -441,7 +441,7 @@ export default function EnterprisePage() {
               <Card key={title} className="border-primary/20 min-w-0">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground">{title}</h3>
@@ -450,7 +450,7 @@ export default function EnterprisePage() {
                 <CardContent className="text-muted-foreground break-words space-y-2">
                   <p>{body}</p>
                   {href && (
-                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-sm text-primary-strong hover:underline">
                       Encryption at rest
                     </a>
                   )}
@@ -469,7 +469,7 @@ export default function EnterprisePage() {
           <p className="text-lg text-muted-foreground leading-relaxed">
             Flightroom is open source under Apache-2.0, and the templates under MIT. Read the code
             your security review asks about on{" "}
-            <a href={GITHUB_REPO_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+            <a href={GITHUB_REPO_URL} target="_blank" rel="noopener noreferrer" className="text-primary-strong hover:underline">
               GitHub
             </a>
             .
@@ -487,7 +487,7 @@ export default function EnterprisePage() {
           <Card className="border-primary/40">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                   <ClipboardCheck className="h-6 w-6" />
                 </div>
                 <h2 className="text-2xl font-bold text-foreground">What you need for a rollout</h2>

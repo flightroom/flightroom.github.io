@@ -33,7 +33,7 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0b1020",
+          background: "#112631",
           padding: "72px 80px",
           fontFamily: "sans-serif",
         }}
@@ -45,10 +45,10 @@ export default function OpengraphImage() {
               width: 56,
               height: 56,
               borderRadius: 16,
-              background: "linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)",
+              background: "linear-gradient(135deg, #FE7F2D 0%, #FCCA46 100%)",
             }}
           />
-          <div style={{ fontSize: 34, color: "#ffffff", fontWeight: 700 }}>
+          <div style={{ fontSize: 34, color: "#FAF7F2", fontWeight: 700 }}>
             {SITE_NAME}
           </div>
         </div>
@@ -59,24 +59,24 @@ export default function OpengraphImage() {
             style={{
               fontSize: 74,
               lineHeight: 1.08,
-              color: "#ffffff",
+              color: "#FAF7F2",
               fontWeight: 800,
               letterSpacing: "-0.02em",
             }}
           >
             Apps and AI agents, built by anyone
           </div>
-          <div style={{ fontSize: 34, color: "#a5b0c9", lineHeight: 1.35 }}>
+          <div style={{ fontSize: 34, color: "#B7C7D2", lineHeight: 1.35 }}>
             Shipped in one click to your Kubernetes, with your SSO, your roles and your AI models.
           </div>
         </div>
 
         {/* Proof row */}
-        <div style={{ display: "flex", alignItems: "center", gap: 40, fontSize: 26, color: "#8b5cf6" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 40, fontSize: 26, color: "#FEAF84" }}>
           <div style={{ display: "flex" }}>Build with AI</div>
-          <div style={{ display: "flex", color: "#3b4463" }}>·</div>
+          <div style={{ display: "flex", color: "#2A4858" }}>·</div>
           <div style={{ display: "flex" }}>One-click deploy</div>
-          <div style={{ display: "flex", color: "#3b4463" }}>·</div>
+          <div style={{ display: "flex", color: "#2A4858" }}>·</div>
           <div style={{ display: "flex" }}>Enterprise-ready</div>
         </div>
       </div>

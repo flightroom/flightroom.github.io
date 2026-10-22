@@ -60,7 +60,7 @@ export default function Guardrails() {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-4 mb-12 max-w-3xl mx-auto">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary">
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary-strong">
               IT stays in control
             </p>
             <h2 className="text-3xl md:text-5xl font-bold text-foreground">
@@ -75,7 +75,7 @@ export default function Guardrails() {
                 key={item.title}
                 className="p-5 rounded-xl border border-primary/20 bg-background/50 min-w-0"
               >
-                <div className="p-2 rounded-lg bg-primary/10 text-primary inline-flex mb-3">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-strong inline-flex mb-3">
                   <item.icon className="h-5 w-5" />
                 </div>
                 <h3 className="font-semibold text-foreground">{item.title}</h3>
@@ -91,7 +91,7 @@ export default function Guardrails() {
                 <span className="text-sm text-muted-foreground">
                   Sign-on, roles, models, hosting and the AI&apos;s limits, in detail.
                 </span>
-                <span className="inline-flex items-center gap-1 text-sm font-medium text-primary">
+                <span className="inline-flex items-center gap-1 text-sm font-medium text-primary-strong">
                   Read more
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </span>

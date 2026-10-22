@@ -42,7 +42,7 @@ export default function OpenSource() {
                 key={item.title}
                 className="flex items-start gap-4 p-5 rounded-xl border border-border/50 bg-surface/30 backdrop-blur-sm min-w-0"
               >
-                <div className="p-2 rounded-lg bg-primary/10 text-primary flex-shrink-0">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-strong flex-shrink-0">
                   <item.icon className="h-5 w-5" />
                 </div>
                 <div className="min-w-0">
@@ -61,14 +61,14 @@ export default function OpenSource() {
             <div className="flex flex-col sm:flex-row gap-4 text-sm flex-shrink-0">
               <Link
                 href={GITHUB_REPO_URL}
-                className="inline-flex items-center gap-2 text-primary hover:text-foreground transition-colors"
+                className="inline-flex items-center gap-2 text-primary-strong hover:text-foreground transition-colors"
               >
                 <Github className="h-4 w-4" />
                 Source on GitHub
               </Link>
               <Link
                 href="/start-now"
-                className="group inline-flex items-center gap-1 text-primary hover:text-foreground transition-colors"
+                className="group inline-flex items-center gap-1 text-primary-strong hover:text-foreground transition-colors"
               >
                 Self-hosting options
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />

@@ -9,7 +9,7 @@ pnpm install
 pnpm dev      # http://localhost:3020
 ```
 
-`@mfe-orchestrator/design-system` comes from GitHub Packages. Authenticate first:
+`@flightroom/design-system` comes from GitHub Packages. Authenticate first:
 
 ```bash
 pnpm config set //npm.pkg.github.com/:_authToken <token with read:packages>

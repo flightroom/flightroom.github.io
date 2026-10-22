@@ -18,7 +18,7 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left space-y-8 min-w-0">
             <div className="space-y-5">
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary">
+              <p className="text-sm font-semibold uppercase tracking-widest text-primary-strong">
                 Apps and AI agents, shipped in one click
               </p>
 

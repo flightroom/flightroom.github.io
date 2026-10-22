@@ -193,7 +193,7 @@ export default function AiPage() {
         {/* Hero */}
         <header className="grid lg:grid-cols-2 gap-10 items-center max-w-6xl mx-auto">
           <div className="min-w-0 space-y-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm text-primary">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm text-primary-strong">
               <Sparkles className="h-4 w-4" />
               {PILLARS.build.name}
             </span>
@@ -243,7 +243,7 @@ export default function AiPage() {
           <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {generateSteps.map((step, index) => (
               <li key={step.title} className="rounded-xl border border-primary/20 bg-surface/30 p-6">
-                <span className="text-sm font-mono text-primary">0{index + 1}</span>
+                <span className="text-sm font-mono text-primary-strong">0{index + 1}</span>
                 <h3 className="mt-2 text-lg font-semibold text-foreground">{step.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{step.description}</p>
               </li>
@@ -263,7 +263,7 @@ export default function AiPage() {
           <ol className="grid md:grid-cols-3 gap-6">
             {improveSteps.map((step, index) => (
               <li key={step.title} className="rounded-xl border border-primary/20 bg-surface/30 p-6">
-                <span className="text-sm font-mono text-primary">0{index + 1}</span>
+                <span className="text-sm font-mono text-primary-strong">0{index + 1}</span>
                 <h3 className="mt-2 text-lg font-semibold text-foreground">{step.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{step.description}</p>
               </li>
@@ -271,7 +271,7 @@ export default function AiPage() {
           </ol>
           <p className="text-center text-muted-foreground">
             Once it is merged,{" "}
-            <Link href={PILLARS.ship.path} className="text-primary hover:underline">
+            <Link href={PILLARS.ship.path} className="text-primary-strong hover:underline">
               one click deploys it
             </Link>{" "}
             to your Kubernetes.
@@ -283,7 +283,7 @@ export default function AiPage() {
           <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-background">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                   <Bot className="h-6 w-6" />
                 </div>
                 <h2 className="text-2xl md:text-3xl tracking-normal font-semibold text-foreground">
@@ -309,7 +309,7 @@ export default function AiPage() {
               </div>
               <div className="min-w-0 space-y-2">
                 <h3 className="flex items-center gap-2 font-medium text-foreground">
-                  <Database className="h-4 w-4 text-primary" />
+                  <Database className="h-4 w-4 text-primary-strong" />
                   Your existing data
                 </h3>
                 <p>
@@ -336,7 +336,7 @@ export default function AiPage() {
               <Card key={role} className="border-primary/20 h-full">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground">{role}</h3>
@@ -344,7 +344,7 @@ export default function AiPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="flex gap-2 text-muted-foreground">
-                    <MessageSquare className="h-4 w-4 mt-1 flex-shrink-0 text-primary/70" />
+                    <MessageSquare className="h-4 w-4 mt-1 flex-shrink-0 text-primary-strong/70" />
                     <span>&ldquo;{request}&rdquo;</span>
                   </p>
                 </CardContent>
@@ -358,7 +358,7 @@ export default function AiPage() {
           <Card className="border-primary/20">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                   <LayoutTemplate className="h-6 w-6" />
                 </div>
                 <h2 className="text-2xl md:text-3xl tracking-normal font-semibold text-foreground">
@@ -375,7 +375,7 @@ export default function AiPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="min-w-0 space-y-3">
                   <h3 className="flex items-center gap-2 font-medium text-foreground">
-                    <Server className="h-4 w-4 text-primary" />
+                    <Server className="h-4 w-4 text-primary-strong" />
                     Backend services and agents
                   </h3>
                   <ul className="divide-y divide-primary/10 rounded-lg border border-primary/10">
@@ -389,7 +389,7 @@ export default function AiPage() {
                 </div>
                 <div className="min-w-0 space-y-3">
                   <h3 className="flex items-center gap-2 font-medium text-foreground">
-                    <LayoutTemplate className="h-4 w-4 text-primary" />
+                    <LayoutTemplate className="h-4 w-4 text-primary-strong" />
                     Web interfaces
                   </h3>
                   <p className="text-sm">
@@ -420,7 +420,7 @@ export default function AiPage() {
             {guardrails.map(({ icon: Icon, title, description }) => (
               <div key={title} className="rounded-xl border border-primary/20 bg-surface/30 p-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="font-semibold text-foreground">{title}</h3>
@@ -448,7 +448,7 @@ export default function AiPage() {
           <Card className="border-primary/20 h-full">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                   <Cpu className="h-6 w-6" />
                 </div>
                 <h2 className="text-2xl tracking-normal font-semibold text-foreground">
@@ -476,7 +476,7 @@ export default function AiPage() {
           <Card className="border-primary/20 h-full">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                   <Sparkles className="h-6 w-6" />
                 </div>
                 <h2 className="text-2xl tracking-normal font-semibold text-foreground">
@@ -507,7 +507,7 @@ export default function AiPage() {
           <Card className="border-primary/20">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary-strong">
                   <Plug className="h-6 w-6" />
                 </div>
                 <h2 className="text-2xl md:text-3xl tracking-normal font-semibold text-foreground">
@@ -533,7 +533,7 @@ export default function AiPage() {
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="min-w-0 space-y-2">
                   <h3 className="flex items-center gap-2 font-medium text-foreground">
-                    <KeyRound className="h-4 w-4 text-primary" />
+                    <KeyRound className="h-4 w-4 text-primary-strong" />
                     OAuth 2.1 sign-in
                   </h3>
                   <p className="text-sm">
@@ -543,7 +543,7 @@ export default function AiPage() {
                 </div>
                 <div className="min-w-0 space-y-2">
                   <h3 className="flex items-center gap-2 font-medium text-foreground">
-                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <ShieldCheck className="h-4 w-4 text-primary-strong" />
                     Role checked on every call
                   </h3>
                   <p className="text-sm">
@@ -553,7 +553,7 @@ export default function AiPage() {
                 </div>
                 <div className="min-w-0 space-y-2">
                   <h3 className="flex items-center gap-2 font-medium text-foreground">
-                    <Terminal className="h-4 w-4 text-primary" />
+                    <Terminal className="h-4 w-4 text-primary-strong" />
                     Your agent, our pull request
                   </h3>
                   <p className="text-sm">
@@ -581,21 +581,21 @@ export default function AiPage() {
           </div>
           <ol className="grid md:grid-cols-3 gap-6">
             <li className="rounded-xl border border-primary/20 bg-surface/30 p-6 space-y-2">
-              <Boxes className="h-5 w-5 text-primary" />
+              <Boxes className="h-5 w-5 text-primary-strong" />
               <h3 className="font-semibold text-foreground">Connect your Git provider</h3>
               <p className="text-sm text-muted-foreground">
                 An admin connects GitHub, GitLab or Azure DevOps to the project.
               </p>
             </li>
             <li className="rounded-xl border border-primary/20 bg-surface/30 p-6 space-y-2">
-              <Cpu className="h-5 w-5 text-primary" />
+              <Cpu className="h-5 w-5 text-primary-strong" />
               <h3 className="font-semibold text-foreground">Pick a model</h3>
               <p className="text-sm text-muted-foreground">
                 Add Claude, GPT or Gemini to the organization with your own credentials.
               </p>
             </li>
             <li className="rounded-xl border border-primary/20 bg-surface/30 p-6 space-y-2">
-              <MessageSquare className="h-5 w-5 text-primary" />
+              <MessageSquare className="h-5 w-5 text-primary-strong" />
               <h3 className="font-semibold text-foreground">Invite the team</h3>
               <p className="text-sm text-muted-foreground">
                 Everyone with a member role can describe an app, an agent or a change. Protect the

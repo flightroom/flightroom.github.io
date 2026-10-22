@@ -36,7 +36,7 @@ export default function ParticlesBackground() {
                 value: 60,
               },
               color: {
-                value: ['#8b5cf6', '#a78bfa', '#c4b5fd'], // Purple shades from your theme
+                value: ['#FE7F2D', '#FCCA46', '#619B8A', '#A1C181'], // pumpkin, sunglow, zomp, olivine
               },
               shape: {
                 type: 'circle',
@@ -55,7 +55,7 @@ export default function ParticlesBackground() {
               links: {
                 enable: true,
                 distance: 120,
-                color: '#8b5cf6', // Purple-500
+                color: '#FE7F2D', // pumpkin-400
                 opacity: 0.4,
                 width: 1,
               },
@@ -94,7 +94,7 @@ export default function ParticlesBackground() {
                   distance: 140,
                   links: {
                     opacity: 0.5,
-                    color: '#c4b5fd', // Purple-300
+                    color: '#FEAF84', // pumpkin-300
                   },
                 },
                 push: {

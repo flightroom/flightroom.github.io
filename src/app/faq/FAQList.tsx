@@ -18,18 +18,18 @@ export default function FAQList() {
   return (
     <div className="space-y-6">
       {faqs.map((faq, index) => (
-        <div key={faq.question} className="border-b border-gray-200 dark:border-gray-700 pb-6 last:border-0 last:pb-0">
+        <div key={faq.question} className="border-b border-border pb-6 last:border-0 last:pb-0">
           <button
             onClick={() => toggleFAQ(index)}
             className="w-full text-left focus:outline-none group"
             aria-expanded={openIndex === index}
           >
             <div className="flex items-start justify-between">
-              <h2 className="text-lg font-medium text-gray-300 dark:text-gray-100 transition-colors duration-200 group-hover:text-primary">
+              <h2 className="text-lg font-medium text-foreground transition-colors duration-200 group-hover:text-primary-strong">
                 {faq.question}
               </h2>
-              <span className={`text-gray-400 ml-4 mt-1 transition-transform duration-300 flex-shrink-0 ${
-                openIndex === index ? 'rotate-180 text-primary' : ''
+              <span className={`text-muted-foreground ml-4 mt-1 transition-transform duration-300 flex-shrink-0 ${
+                openIndex === index ? 'rotate-180 text-primary-strong' : ''
               }`}>
                 <ChevronDown size={20} />
               </span>
@@ -40,7 +40,7 @@ export default function FAQList() {
               openIndex === index ? 'max-h-[32rem] opacity-100 mt-3' : 'max-h-0 opacity-0'
             }`}
           >
-            <p className="text-gray-200 dark:text-gray-200 answer-enter pr-6 leading-relaxed">{faq.answer}</p>
+            <p className="text-foreground-secondary answer-enter pr-6 leading-relaxed">{faq.answer}</p>
           </div>
         </div>
       ))}

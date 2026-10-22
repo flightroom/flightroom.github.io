@@ -12,9 +12,9 @@ interface PricingModalProps {
 export function PricingModal({ isOpen, onOpenChange, selectedPlan }: PricingModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[95%] sm:max-w-[800px] bg-background p-6 sm:p-8 rounded-lg [&>button]:text-white [&>button]:hover:text-white/80 [&>button]:focus-visible:ring-white/20">
+      <DialogContent className="w-[95%] sm:max-w-[800px] bg-background p-6 sm:p-8 rounded-lg [&>button]:text-foreground [&>button]:hover:text-foreground-secondary [&>button]:focus-visible:ring-ring">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-white">Thank you for your interest!</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-center text-foreground">Thank you for your interest!</DialogTitle>
           <DialogDescription className="text-center text-base">
             This was a smoke test to gauge interest in the product. 
             Leave your email below to stay updated on our progress and be the first to know when we launch!

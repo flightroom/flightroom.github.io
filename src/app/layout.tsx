@@ -11,7 +11,7 @@ import { CORE_KEYWORDS, PRODUCT, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { organizationSchema, webSiteSchema } from "@/lib/structuredData";
 
 export const viewport: Viewport = {
-  themeColor: "#8b5cf6",
+  themeColor: "#112631",
 };
 
 export const metadata: Metadata = {
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   },
   manifest: '/favicon/manifest.json',
   other: {
-    'msapplication-TileColor': '#ffffff',
+    'msapplication-TileColor': '#112631',
     'msapplication-TileImage': '/favicon/ms-icon-144x144.png',
   },
 };

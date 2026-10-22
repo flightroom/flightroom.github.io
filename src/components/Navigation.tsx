@@ -18,11 +18,11 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="fixed top-5 left-5 right-5 z-50 bg-black/30 backdrop-blur-md border border-primary/30 rounded-lg shadow-lg">
+    <nav className="fixed top-5 left-5 right-5 z-50 bg-background/60 backdrop-blur-md border border-primary/30 rounded-lg shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="text-white font-bold text-xl">
+            <Link href="/" className="text-foreground font-bold text-xl">
               {SITE_NAME}
             </Link>
           </div>
@@ -34,7 +34,7 @@ export default function Navigation() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-white/80 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  className="text-foreground-secondary hover:text-foreground px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   {item.name}
                 </Link>
@@ -42,7 +42,7 @@ export default function Navigation() {
             </div>
             <Link
               href="/start-now"
-              className="ml-4 bg-gradient-to-r from-primary to-primary/80 text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
+              className="ml-4 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
             >
               Start Now
             </Link>
@@ -52,7 +52,7 @@ export default function Navigation() {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-white/80 hover:text-white focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-foreground-secondary hover:text-foreground focus:outline-none"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
@@ -69,7 +69,7 @@ export default function Navigation() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-white/80 hover:text-white hover:bg-white/10"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-foreground-secondary hover:text-foreground hover:bg-muted"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
@@ -77,7 +77,7 @@ export default function Navigation() {
               ))}
               <Link
                 href="/start-now"
-                className="block w-full text-center mt-4 px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-primary to-primary/80 hover:opacity-90"
+                className="block w-full text-center mt-4 px-3 py-2 rounded-md text-base font-medium text-primary-foreground bg-gradient-to-r from-primary to-primary/80 hover:opacity-90"
                 onClick={() => setIsOpen(false)}
               >
                 Start Now
