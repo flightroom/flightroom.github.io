@@ -70,7 +70,7 @@ const WaitingListFormContent  : React.FC<WaitingListFormContentProps> = ({ acces
       // Counts once marked as a key event in the GA UI.
       event('generate_lead', { accessPage, selectedPlan });
 
-      toast.success('Successfully joined to MFE orchestrator community!');
+      toast.success('Successfully joined the Flightroom community!');
       setEmail('');
     } catch (error) {
       console.error('Error joining community:', error);
@@ -119,7 +119,7 @@ const WaitingListFormContent  : React.FC<WaitingListFormContentProps> = ({ acces
         </Button>
       </div>
       <p className="text-sm text-muted-foreground mt-3 text-center">
-        Join 100+ developers on the MFE orchestrator community. No spam, unsubscribe anytime.
+        Join 100+ developers on the Flightroom community. No spam, unsubscribe anytime.
       </p>
     </form>
   );

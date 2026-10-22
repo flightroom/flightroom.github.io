@@ -4,21 +4,21 @@ import { Card, CardContent } from "@/components/design-system";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   alternates: {
-    canonical: 'https://mfe-orchestrator.dev/privacy-policy',
+    canonical: 'https://flightroom.dev/privacy-policy',
   },
-  description: "Privacy Policy for MFE Orchestrator - Learn how we protect your data and respect your privacy",
+  description: "Privacy Policy for Flightroom - Learn how we protect your data and respect your privacy",
   openGraph: {
     title: "Privacy Policy",
-    description: "Privacy Policy for MFE Orchestrator - Learn how we protect your data and respect your privacy",
-    url: "https://mfe-orchestrator.dev/privacy-policy",
-    siteName: "MFE Orchestrator",
+    description: "Privacy Policy for Flightroom - Learn how we protect your data and respect your privacy",
+    url: "https://flightroom.dev/privacy-policy",
+    siteName: "Flightroom",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Privacy Policy",
-    description: "Privacy Policy for MFE Orchestrator - Learn how we protect your data and respect your privacy",
+    description: "Privacy Policy for Flightroom - Learn how we protect your data and respect your privacy",
   },
 };
 

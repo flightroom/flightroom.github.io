@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button, Card, CardContent, CardHeader, CardTitle } from "@/components/design-system";
 import { ArrowRight, Check, Layers, Puzzle, Users, X } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
-import { CONSOLE_URL, pageMetadata } from "@/lib/seo";
+import { CONSOLE_URL, PILLARS, pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema, definedTermSchema } from "@/lib/structuredData";
 
 /**
@@ -235,16 +235,16 @@ export default function WhatIsAMicroFrontendPage() {
               <div className="p-2 rounded-lg bg-primary/10 text-primary">
                 <Layers className="h-6 w-6" />
               </div>
-              <CardTitle className="text-2xl">Where MFE Orchestrator comes in</CardTitle>
+              <CardTitle className="text-2xl">Where Flightroom comes in</CardTitle>
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
             <p className="text-muted-foreground leading-relaxed">
-              MFE Orchestrator is the control plane for the part the architecture leaves to you. It
-              stores each build, keeps a version history per environment, serves the runtime
-              configuration your host reads on startup, and handles canary releases and rollback.
-              You get independent deployment for real — releasing a micro frontend never rebuilds
-              the host.
+              Flightroom (formerly MFE Orchestrator) handles the part the architecture leaves to
+              you. It stores each build as an immutable snapshot, keeps a version history per
+              environment, generates the Module Federation configuration for Vite and Webpack, and
+              serves the runtime configuration your host reads on startup. Canary releases and
+              one-click rollback come with it. Releasing a micro frontend never rebuilds the host.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a href={CONSOLE_URL} target="_blank" rel="noopener noreferrer">
@@ -253,9 +253,9 @@ export default function WhatIsAMicroFrontendPage() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
-              <Link href="/faq">
+              <Link href={PILLARS.microFrontends.path}>
                 <Button variant="secondary" size="lg" className="w-full sm:w-auto cursor-pointer">
-                  Read the FAQ
+                  Micro frontends in Flightroom
                 </Button>
               </Link>
             </div>

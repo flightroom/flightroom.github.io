@@ -6,13 +6,8 @@ on:
   pull_request:
     branches: [main]
 
-  # Manual rebuild, e.g. to pick up CMS content without pushing a commit.
+  # Manual rebuild without pushing a commit.
   workflow_dispatch:
-
-  # Called by cms-rebuild.yml, which is what a publication in the CMS triggers.
-  # The build is defined once, here: a second copy of it would be a second thing
-  # to keep in step with this one.
-  workflow_call:
 
 permissions:
   contents: read
@@ -21,9 +16,9 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one concurrent deployment. Every run rebuilds the whole site from the
-# CMS, so the newest run always wins: an older one still in flight has nothing
-# to add, and letting two deploys race can put the earlier content online last.
+# Allow one concurrent deployment. Every run rebuilds the whole site, so the
+# newest run always wins: letting two deploys race can put older content online
+# last.
 concurrency:
   group: "pages"
   cancel-in-progress: true

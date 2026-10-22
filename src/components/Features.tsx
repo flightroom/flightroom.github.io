@@ -1,156 +1,104 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/design-system";
-import { 
-  Settings, 
-  Globe, 
-  Rocket, 
-  FileText, 
-  Layers, 
-  GitBranch, 
-  GitMerge, 
-  ShieldCheck, 
-  GitPullRequest, 
-  GitCompare 
-} from "lucide-react";
+import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/design-system";
+import { ArrowRight, Check, Layers, Ship, Sparkles } from "lucide-react";
+import { PILLARS } from "@/lib/seo";
 
-const featuresCore = [
+/**
+ * The three pillars, each with enough concrete detail to be checked against
+ * the product. PillarLinks is the short cross-link row used on other pages;
+ * the home page needs the longer version.
+ */
+
+const pillars = [
   {
+    ...PILLARS.kubernetes,
+    title: "Kubernetes management",
+    linkLabel: "Kubernetes management",
+    icon: Ship,
+    summary: "Backend services and containers, deployed through Git and Argo CD.",
+    points: [
+      "Every deploy is a Git commit: namespaces, ConfigMaps, Secrets and Helm values per environment.",
+      "One click sets up Argo CD: an AppProject and ApplicationSets with automated sync, prune and self-heal.",
+      "Service templates for Node.js + Fastify, Python + FastAPI, Spring Boot and Quarkus.",
+      "Exposure through the Gateway API, with TLS from cert-manager and HTTPS redirects.",
+    ],
+  },
+  {
+    ...PILLARS.microFrontends,
+    title: "Micro frontends",
+    linkLabel: "Micro frontend management",
     icon: Layers,
-    title: "Micro Frontend Version Management",
-    description: "Every build you publish stays available and addressable. Track which version of each micro frontend is live, and change it without a rebuild."
+    summary: "Release each part of the UI on its own, without rebuilding the host.",
+    points: [
+      "Every deployment is an immutable snapshot. Rollback re-activates the previous one.",
+      "One build for every environment: variables reach the browser at boot.",
+      "Canary releases by percentage, sticky per session, or for a named list of users.",
+      "Module Federation config generated for Vite and Webpack. React, Angular, Vue and more.",
+    ],
   },
   {
-    icon: Rocket,
-    title: "Independent Deployment",
-    description: "Release one micro frontend without rebuilding or redeploying the host application, so a small change costs a small deploy."
+    ...PILLARS.ai,
+    title: "AI for everyone",
+    linkLabel: "AI in Flightroom",
+    icon: Sparkles,
+    summary: "Anyone on the team can ask for a change. Engineers review it as a pull request.",
+    points: [
+      "Describe a change in plain words. It comes back on a branch, ready to open as a pull request.",
+      "Generate a domain: up to 3 frontends and 3 backends created from templates, with CI.",
+      "Bring your own model: Claude, GPT on Azure OpenAI, or Gemini.",
+      "A remote MCP server for Claude Code, Cursor, VS Code and Gemini CLI.",
+    ],
   },
-  {
-    icon: Settings,
-    title: "Per-environment Configuration",
-    description: "DEV, UAT, PROD and any environment you invent can serve different versions at the same time, each with its own configuration."
-  },
-  {
-    icon: GitCompare,
-    title: "Module Federation, Configured For You",
-    description: "MFE Orchestrator generates the runtime configuration your host needs under Vite or Webpack — no hand-maintained remotes file in the host repository."
-  },
-  {
-    icon: Globe,
-    title: "Multi-cloud & On-premise Storage",
-    description: "Artifacts go to your own AWS S3, Azure Blob Storage or Google Cloud Storage — or stay entirely on-premise when they cannot leave your network."
-  },
-  {
-    icon: FileText,
-    title: "One Console For The Whole Estate",
-    description: "See every micro frontend, environment and version in one interface, instead of reading pipeline logs to find out what is deployed."
-  }
-];
-
-const featuresOps = [
-  {
-    icon: GitBranch,
-    title: "Canary Releases",
-    description: "Serve a new version to a share of your users, raise it when the numbers hold, and stop the rollout by changing one setting."
-  },
-  {
-    icon: GitMerge,
-    title: "CI/CD Integrations",
-    description: "Ready-made pipelines for GitHub Actions, GitLab CI and Azure DevOps, plus an API for everything else. The pipeline you already have gains one upload step."
-  },
-  {
-    icon: ShieldCheck,
-    title: "Rollback In One Step",
-    description: "Recovering means selecting the previous version, not reverting a commit and waiting for a build. Time to recover stops depending on your pipeline."
-  },
-  {
-    icon: GitPullRequest,
-    title: "Git Integration (In progress)",
-    description: "Import Git repositories and manage individual micro frontends directly from your VCS; create pipelines on your Git projects."
-  },
-  // {
-  //   icon: GitCompare,
-  //   title: "GitOps (In progress)",
-  //   description: "We're implementing GitOps workflows to automatically promote versions across environments via PRs and policies."
-  // },
-  // {
-  //   icon: ShieldCheck,
-  //   title: "Secured by Design",
-  //   description: "Security-first architecture with RBAC, secrets management, audit logs, and safe rollout strategies baked in."
-  // }
 ];
 
 const Features = () => {
   return (
-    <>
-        <section className="py-20 container mx-auto px-4 py-20">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-              Everything a micro frontend needs
-              <span className="bg-gradient-primary bg-clip-text text-transparent"> after the build</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Storage, versions, per-environment configuration and the runtime wiring your host
-              application depends on — across any cloud, or none.
-            </p>
-          </div>
+    <section className="py-20 container mx-auto px-4">
+      <div className="text-center space-y-4 mb-16 max-w-3xl mx-auto">
+        <h2 className="text-3xl md:text-5xl font-bold text-foreground">
+          The frontend, the backend
+          <span className="bg-gradient-primary bg-clip-text text-transparent"> and the cluster</span>
+        </h2>
+        <p className="text-xl text-muted-foreground">
+          One console for the whole path to production. Use all three parts, or start with the
+          one you need today.
+        </p>
+      </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuresCore.map((feature, index) => (
-              <Card
-                key={index}
-                className="bg-surface/50 backdrop-blur-sm border-border/50 hover:bg-surface-variant transition-all duration-300 hover:shadow-glow group hover:-translate-y-1"
+      <div className="grid lg:grid-cols-3 gap-8">
+        {pillars.map((pillar) => (
+          <Card
+            key={pillar.path}
+            className="bg-surface/50 backdrop-blur-sm border-primary/20 flex flex-col hover:shadow-glow transition-shadow duration-300"
+          >
+            <CardHeader>
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <pillar.icon className="w-6 h-6 text-primary" />
+              </div>
+              <CardTitle className="text-2xl text-foreground">{pillar.title}</CardTitle>
+              <p className="text-muted-foreground mt-2">{pillar.summary}</p>
+            </CardHeader>
+            <CardContent className="flex flex-col flex-1">
+              <ul className="space-y-3 mb-6">
+                {pillar.points.map((point) => (
+                  <li key={point} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <Check className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={pillar.path}
+                className="group mt-auto inline-flex items-center gap-1 text-sm font-medium text-primary"
               >
-                <CardHeader>
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <feature.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl text-foreground">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-muted-foreground leading-relaxed">
-                    {feature.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-      </section>
-
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-              Release often.
-              <span className="bg-gradient-primary bg-clip-text text-transparent"> Recover instantly.</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Canary releases, pipeline integrations and one-step rollback, so shipping more often
-              does not mean risking more.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuresOps.map((feature, index) => (
-              <Card
-                key={index}
-                className="bg-surface/50 backdrop-blur-sm border-border/50 hover:bg-surface-variant transition-all duration-300 hover:shadow-glow group hover:-translate-y-1"
-              >
-                <CardHeader>
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <feature.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl text-foreground">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-muted-foreground leading-relaxed">
-                    {feature.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
+                More on {pillar.linkLabel}
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </section>
   );
 };
 

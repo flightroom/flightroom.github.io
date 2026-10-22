@@ -1,7 +1,7 @@
 import { Button } from "@/components/design-system";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, Rocket } from "lucide-react";
 import Link from "next/link";
-import { CONSOLE_URL, QUICK_START_URL } from "@/lib/seo";
+import { CONSOLE_URL } from "@/lib/seo";
 
 const CTA = () => {
   return (
@@ -10,12 +10,12 @@ const CTA = () => {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-              Release your next micro frontend
-              <span className="bg-gradient-primary bg-clip-text text-transparent"> without touching the host</span>
+              Start with one service
+              <span className="bg-gradient-primary bg-clip-text text-transparent"> or one micro frontend</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Connect your repository, publish a build, and assign it to an environment.
-              Nothing to install, and nothing to migrate first.
+              Open the hosted console, connect a repository and create your first environment.
+              Add the rest of the product when you are ready.
             </p>
           </div>
 
@@ -26,10 +26,10 @@ const CTA = () => {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>
-            <Link href={QUICK_START_URL}>
+            <Link href="/start-now">
               <Button variant="secondary" size="lg" className="group cursor-pointer w-full sm:w-auto">
-                <BookOpen className="w-5 h-5" />
-                Quick start — 10 minutes
+                <Rocket className="w-5 h-5" />
+                All ways to get started
               </Button>
             </Link>
           </div>
@@ -45,7 +45,7 @@ const CTA = () => {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-primary rounded-full"></div>
-              Works with your existing pipelines
+              Works with GitHub, GitLab and Azure DevOps
             </div>
           </div>
         </div>

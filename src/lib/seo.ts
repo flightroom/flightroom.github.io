@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = "https://mfe-orchestrator.dev";
-export const CONSOLE_URL = "https://console.mfe-orchestrator.dev";
-export const DOCS_URL = "https://mfe-orchestrator.dev/documentation";
-/** The docs' golden path: zero to a deployed microfrontend and a rollback in ~10 minutes. */
+export const SITE_URL = "https://flightroom.dev";
+export const CONSOLE_URL = "https://console.flightroom.dev";
+export const DOCS_URL = "https://flightroom.dev/documentation";
+/** The docs' golden path: zero to a deployed micro frontend and a rollback in ~10 minutes. */
 export const QUICK_START_URL = `${DOCS_URL}/docs/quick-start`;
-export const GITHUB_URL = "https://github.com/mfe-orchestrator";
-/** The project's X account, already used as the twitter:creator on the blog. */
+export const GITHUB_URL = "https://github.com/flightroom";
+export const GITHUB_REPO_URL = "https://github.com/flightroom/flightroom";
+/** The project's X account. It predates the rename, so it still carries the old handle. */
 export const X_URL = "https://x.com/mfeorchestrator";
+/** The all-in-one image that actually exists on Docker Hub today. */
+export const DOCKER_IMAGE = "lory1990/mfe-orchestrator:all-in-one";
 
 /**
  * The social card. src/app/opengraph-image.png is picked up by Next's file
@@ -17,21 +20,32 @@ export const X_URL = "https://x.com/mfeorchestrator";
  */
 const OG_IMAGE = `${SITE_URL}/opengraph-image.png`;
 
-export const SITE_NAME = "MFE Orchestrator";
+export const SITE_NAME = "Flightroom";
+/** The name the project had until October 2026, kept so old links and searches still connect. */
+export const FORMER_NAME = "MFE Orchestrator";
 
 /**
- * The product definition. Every page derives its copy from these three lines so
- * the positioning stays identical across the site, the metadata and the JSON-LD.
+ * The product definition. Every page derives its copy from these lines so the
+ * positioning stays identical across the site, the metadata and the JSON-LD.
  */
 export const PRODUCT = {
   /** The category we want to be found in. */
-  category: "Micro frontend deployment and orchestration platform",
-  /** The promise, in the words a developer would use. */
-  oneLiner:
-    "Ship a micro frontend without rebuilding the host application.",
+  category: "Open-source platform for micro frontends and services on Kubernetes",
+  /** The promise, in the words a team would use. */
+  oneLiner: "Build, ship and run your whole product on Kubernetes.",
   /** The mechanism, for people who need to know how before they trust it. */
   definition:
-    "MFE Orchestrator is an open-source control plane for micro frontends. It stores every build, decides which version each environment serves, and hands your host application the runtime configuration it needs — so deploying one micro frontend never means rebuilding the shell.",
+    "Flightroom is an open-source platform that takes micro frontends and backend services from template to Kubernetes. It versions every build, releases micro frontends without rebuilding the host, deploys services through GitOps with Argo CD, and lets anyone on the team describe a change in plain language and get it back as a pull request.",
+} as const;
+
+/**
+ * The three pillars every page hangs off. Kept here so the home page, the
+ * navigation and the structured data name them the same way.
+ */
+export const PILLARS = {
+  microFrontends: { name: "Micro frontends", path: "/micro-frontends" },
+  kubernetes: { name: "Kubernetes", path: "/kubernetes" },
+  ai: { name: "AI", path: "/ai" },
 } as const;
 
 /**
@@ -40,15 +54,15 @@ export const PRODUCT = {
  * type: "micro frontend", "micro-frontend" and "microfrontend".
  */
 export const CORE_KEYWORDS = [
+  "Flightroom",
+  "micro frontend platform",
   "micro frontend orchestration",
-  "micro frontend deployment",
-  "micro frontend versioning",
-  "microfrontend orchestrator",
-  "micro-frontend architecture",
+  "Kubernetes developer platform",
+  "Argo CD GitOps",
+  "internal developer platform",
+  "AI code changes pull request",
   "MFE orchestrator",
   "Module Federation",
-  "canary release frontend",
-  "frontend control plane",
 ];
 
 interface PageMetaInput {

@@ -1,5 +1,5 @@
 import { faqs } from "./faqs";
-import { CONSOLE_URL, DOCS_URL, GITHUB_URL, PRODUCT, SITE_NAME, SITE_URL, X_URL } from "./seo";
+import { CONSOLE_URL, DOCS_URL, FORMER_NAME, GITHUB_URL, PRODUCT, SITE_NAME, SITE_URL, X_URL } from "./seo";
 
 /**
  * JSON-LD builders. Google reads these to understand what the product is and
@@ -13,6 +13,8 @@ export function organizationSchema() {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
+    // The project was called MFE Orchestrator until October 2026.
+    alternateName: FORMER_NAME,
     url: SITE_URL,
     description: PRODUCT.definition,
     // Every profile the project actually holds. An entity anchored in one
@@ -46,9 +48,9 @@ export function softwareApplicationSchema() {
     url: SITE_URL,
     downloadUrl: GITHUB_URL,
     softwareHelp: DOCS_URL,
-    operatingSystem: "Any (web-based, or self-hosted with Docker)",
+    operatingSystem: "Any (web-based, or self-hosted with Docker, Helm on Kubernetes, or Terraform/OpenTofu)",
     isAccessibleForFree: true,
-    license: "https://opensource.org/licenses",
+    license: "https://www.apache.org/licenses/LICENSE-2.0",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -58,12 +60,15 @@ export function softwareApplicationSchema() {
     },
     featureList: [
       "Micro frontend version management per environment",
-      "Runtime configuration for Module Federation hosts",
       "Deploy a micro frontend without rebuilding the host application",
-      "Canary releases with gradual traffic shifting",
-      "One-step rollback to any previous version",
-      "Multi-cloud and on-premise artifact storage",
-      "CI/CD integrations for GitHub Actions, GitLab CI and Azure DevOps",
+      "Canary releases and one-click rollback to a previous snapshot",
+      "Module Federation configuration for Vite and Webpack",
+      "Backend service templates for Node.js, Python, Spring Boot and Quarkus",
+      "GitOps deploys to Kubernetes with Argo CD",
+      "Gateway API exposure per environment",
+      "Plain-language change requests delivered as branches or pull requests",
+      "Bring your own AI model: Claude, GPT on Azure OpenAI, Gemini",
+      "Remote MCP server for Claude, Claude Code, Cursor, VS Code and Gemini CLI",
     ],
     author: { "@id": `${SITE_URL}/#organization` },
   };
@@ -137,140 +142,34 @@ export function howToSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: "How to deploy a micro frontend with MFE Orchestrator",
+    name: "How to ship a change with Flightroom",
     description:
-      "Publish a new version of a micro frontend and serve it to an environment without rebuilding the host application.",
-    totalTime: "PT5M",
+      "Go from a template or an existing repository to a change running in an environment, with a pull request and CI in between.",
     step: [
       {
         "@type": "HowToStep",
         position: 1,
-        name: "Build your micro frontend",
-        text: "Build the micro frontend in its own repository, with its own pipeline, using whatever framework the team already uses.",
+        name: "Create from a template or connect a repository",
+        text: "Start a micro frontend or a backend service from a template, or connect an existing GitHub, GitLab or Azure DevOps repository.",
       },
       {
         "@type": "HowToStep",
         position: 2,
-        name: "Publish the artifact",
-        text: "Upload the build from GitHub Actions, GitLab CI, Azure DevOps or the API. MFE Orchestrator stores it and records the version.",
+        name: "Make the change and open a pull request",
+        text: "Edit the code yourself, or describe the change in plain language and let the AI agent propose it on a branch. Open a pull request for review.",
       },
       {
         "@type": "HowToStep",
         position: 3,
-        name: "Assign the version to an environment",
-        text: "Choose which version DEV, UAT or PROD should serve — all at once, or gradually with a canary release.",
+        name: "Let CI build and register the version",
+        text: "The pipeline builds the artifact or image and registers the new version with Flightroom.",
       },
       {
         "@type": "HowToStep",
         position: 4,
-        name: "Let the host load it at runtime",
-        text: "The host application reads the configuration MFE Orchestrator serves and loads the assigned versions. No host rebuild, and rollback is the same step in reverse.",
+        name: "Deploy to an environment",
+        text: "Micro frontends are served at runtime without rebuilding the host. Services are committed to Git and synced to Kubernetes by Argo CD. Rollback re-activates the previous snapshot.",
       },
     ],
-  };
-}
-
-/**
- * Structured data for the blog.
- *
- * Three kinds of page, three shapes:
- * - /blog is an index: CollectionPage plus an ItemList pointing at the
- *   articles. Index pages are exactly the case Google wants ItemList for.
- * - /blog/[slug] is the article: BlogPosting, the only node Google uses for
- *   article rich results.
- * - /blog/category/[slug] is an archive, so a CollectionPage like the index.
- *
- * Every node references the site's canonical Organization and WebSite by @id
- * instead of restating them, so the whole site stays one entity.
- */
-
-export function blogIndexSchema({
-  path,
-  name,
-  description,
-  posts,
-}: {
-  path: string;
-  name: string;
-  description: string;
-  posts: readonly { slug: string; title: string }[];
-}) {
-  const url = `${SITE_URL}${path}`;
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "@id": `${url}#webpage`,
-    url,
-    name,
-    description,
-    inLanguage: "en",
-    isPartOf: { "@id": `${SITE_URL}/#website` },
-    publisher: { "@id": `${SITE_URL}/#organization` },
-    mainEntity: {
-      // The list carries positions and URLs, not content: the article page is
-      // the only one that emits a BlogPosting, so there is exactly one node per
-      // post across the site.
-      "@type": "ItemList",
-      numberOfItems: posts.length,
-      itemListElement: posts.map((post, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: post.title,
-        url: `${SITE_URL}/blog/${post.slug}`,
-      })),
-    },
-  };
-}
-
-export function blogPostingSchema(post: {
-  slug: string;
-  title: string;
-  excerpt: string;
-  publishedAt: string;
-  updatedAt: string | null;
-  imageUrl?: string | null;
-  categories?: readonly string[];
-  author?: {
-    name: string;
-    role: string | null;
-    bio: string | null;
-    links: readonly string[];
-  } | null;
-}) {
-  const url = `${SITE_URL}/blog/${post.slug}`;
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "@id": `${url}#article`,
-    headline: post.title,
-    description: post.excerpt,
-    url,
-    datePublished: post.publishedAt,
-    // Google expects dateModified even on a post that was never revised; there
-    // it simply equals the publication date.
-    dateModified: post.updatedAt ?? post.publishedAt,
-    inLanguage: "en",
-    // A named Person outranks a company byline for the answer engines, which is
-    // the whole point of the author type in the CMS. Posts without one keep the
-    // Organization, so nothing published before this regressed.
-    author: post.author
-      ? {
-          "@type": "Person",
-          name: post.author.name,
-          ...(post.author.role ? { jobTitle: post.author.role } : {}),
-          ...(post.author.bio ? { description: post.author.bio } : {}),
-          ...(post.author.links.length
-            ? { sameAs: [...post.author.links] }
-            : {}),
-        }
-      : { "@id": `${SITE_URL}/#organization` },
-    publisher: { "@id": `${SITE_URL}/#organization` },
-    isPartOf: { "@id": `${SITE_URL}/#website` },
-    ...(post.imageUrl ? { image: post.imageUrl } : {}),
-    ...(post.categories?.length
-      ? { articleSection: [...post.categories] }
-      : {}),
   };
 }

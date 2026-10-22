@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button, Card, CardContent, CardHeader, CardTitle } from "@/components/design-system";
 import { ArrowRight, GitCompare, Server, Workflow } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
-import { CONSOLE_URL, DOCS_URL, pageMetadata } from "@/lib/seo";
+import { CONSOLE_URL, DOCS_URL, PILLARS, pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/structuredData";
 
 /**
@@ -16,7 +16,7 @@ import { breadcrumbSchema } from "@/lib/structuredData";
 export const metadata: Metadata = pageMetadata({
   title: "Module Federation Without a Remotes File",
   description:
-    "Module Federation loads remotes at runtime but never decides which version. MFE Orchestrator serves a versioned registry per environment, Webpack and Vite.",
+    "Module Federation loads remotes at runtime but never decides which version. Flightroom serves a versioned registry per environment, for Webpack and Vite.",
   path: "/module-federation",
   keywords: [
     "module federation versioning",
@@ -40,7 +40,7 @@ new ModuleFederationPlugin({
   },
 });`;
 
-const orchestratedRemotes = `// The host asks MFE Orchestrator what to load, per environment.
+const orchestratedRemotes = `// The host asks Flightroom what to load, per environment.
 // Versions change in the console; the host stays exactly as it is.
 {
   "environment": "production",
@@ -103,9 +103,9 @@ export default function ModuleFederationPage() {
             micro frontend release back behind a host deploy.
           </p>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            MFE Orchestrator answers it with a versioned registry instead, and serves the
-            configuration your host reads at startup. The mechanism stays; the manual bookkeeping
-            goes away.
+            Flightroom (formerly MFE Orchestrator) answers it with a versioned registry instead,
+            and serves the configuration your host reads at startup. The mechanism stays. The
+            manual bookkeeping goes away.
           </p>
         </header>
 
@@ -179,12 +179,13 @@ export default function ModuleFederationPage() {
             <CardContent className="pt-6">
               <ul className="space-y-4 text-muted-foreground">
                 {[
-                  ["A version registry", "Every published build stays addressable, with a record of what was released when."],
-                  ["Per-environment assignment", "DEV, UAT and PROD serve different versions from the same registry, with no duplicated configuration."],
-                  ["Canary releases", "Shift a percentage of traffic to a new remote and raise it only when the numbers hold."],
-                  ["Rollback as a version change", "Select the previous version. No revert, no rebuild, no dependency on your pipeline's queue."],
-                  ["Artifact storage you control", "AWS S3, Azure Blob Storage, Google Cloud Storage, or on-premise."],
-                  ["Shared dependencies handled", "Common libraries are configured to load once and be reused, rather than bundled into each remote."],
+                  ["A version registry", "Every deployment is an immutable snapshot, with a record of what was released when."],
+                  ["Generated configuration", "The Module Federation configuration for Vite and Webpack is generated for you, not maintained by hand in the host."],
+                  ["Per-environment assignment", "DEV, UAT and PROD serve different versions from the same registry, with no duplicated configuration. Per-environment and global variables reach the browser at boot."],
+                  ["Canary releases", "Send a new remote to a random percentage of users, keep it sticky per session, or limit it to an explicit list of enrolled users."],
+                  ["Rollback as a version change", "Re-activate the previous snapshot. No revert, no rebuild, no dependency on your pipeline's queue."],
+                  ["Artifact storage you control", "The built-in hub, AWS S3, Azure Blob Storage, Google Cloud Storage, or a custom URL on-premise."],
+                  ["Shared dependencies checked", "Cross-repository dependency analysis with peer-dependency alignment shows where remotes drift apart on the libraries they share."],
                 ].map(([title, description]) => (
                   <li key={title} className="flex items-start gap-3">
                     <div className="h-1.5 w-1.5 mt-2.5 rounded-full bg-primary flex-shrink-0" />
@@ -205,8 +206,8 @@ export default function ModuleFederationPage() {
                 Keep Module Federation. Drop the remotes file.
               </h2>
               <p className="text-muted-foreground">
-                Nothing to migrate first: point your existing configuration at the orchestrator and
-                add an upload step to the pipeline that already builds each micro frontend.
+                Nothing to migrate first: point your existing configuration at Flightroom and add an
+                upload step to the pipeline that already builds each micro frontend.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -216,12 +217,19 @@ export default function ModuleFederationPage() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
-              <Link href="/what-is-a-micro-frontend">
+              <Link href={PILLARS.microFrontends.path}>
                 <Button variant="secondary" size="lg" className="w-full sm:w-auto cursor-pointer">
-                  New to micro frontends?
+                  Micro frontends in Flightroom
                 </Button>
               </Link>
             </div>
+            <p className="text-sm text-muted-foreground">
+              New to micro frontends?{" "}
+              <Link href="/what-is-a-micro-frontend" className="text-primary hover:underline">
+                Start with what a micro frontend is
+              </Link>
+              .
+            </p>
           </CardContent>
         </Card>
       </div>

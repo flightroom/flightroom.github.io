@@ -1,136 +1,99 @@
-"use client"
-import { Button, Card, CardContent, CardHeader, CardTitle } from "@/components/design-system";
-import { Copy, CheckCircle } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 /**
- * Replaces the old "Visual Management" block, which described the UI but never
- * showed the mechanism. Developers evaluating an orchestrator want to see what
- * their host actually receives before they trust it with a release.
+ * Services and micro frontends share the first steps and diverge at deploy
+ * time. The two lanes below the steps make that split visible, so neither
+ * audience has to guess which half of the page applies to them.
  */
-
-const runtimeConfig = `{
-  "environment": "production",
-  "microfrontends": {
-    "header": {
-      "version": "2.1.0",
-      "entry": "https://cdn.example.com/header/2.1.0/remoteEntry.js",
-      "scope": "header",
-      "module": "./Header"
-    },
-    "dashboard": {
-      "version": "1.8.3",
-      "entry": "https://cdn.example.com/dashboard/1.8.3/remoteEntry.js",
-      "scope": "dashboard",
-      "module": "./Dashboard"
-    },
-    "checkout": {
-      "version": "4.2.0",
-      "entry": "https://cdn.example.com/checkout/4.2.0/remoteEntry.js",
-      "scope": "checkout",
-      "module": "./Checkout",
-      "canary": {
-        "version": "4.3.0-rc.1",
-        "traffic": 10
-      }
-    }
-  }
-}`;
 
 const steps = [
   {
-    title: "Build",
+    title: "Start from a template",
     description:
-      "Each micro frontend is built in its own repository, with its own pipeline, in whatever framework the team prefers.",
+      "Pick a service template (Node.js + Fastify, Python + FastAPI, Spring Boot, Quarkus) or a micro frontend host or remote for React, Angular or Vue. Service templates ship AGENTS.md and CLAUDE.md, so coding agents follow the conventions.",
   },
   {
-    title: "Publish",
+    title: "Build in your CI",
     description:
-      "The pipeline uploads the artifact from GitHub Actions, GitLab CI, Azure DevOps or the API. The version is recorded and stored in your cloud or on-premise storage.",
+      "Ready-made pipelines for GitHub Actions, GitLab CI and Azure DevOps. CI registers each image version or uploads each micro frontend build. An API covers everything else.",
   },
   {
-    title: "Assign",
+    title: "Deploy per environment",
     description:
-      "Decide which version DEV, UAT and PROD serve — immediately, or gradually with a canary release.",
+      "Environments map to Kubernetes namespaces. Deploy one service, one micro frontend, or a whole functional domain to an environment at once.",
   },
   {
-    title: "Load at runtime",
+    title: "Expose and roll back",
     description:
-      "The host reads the configuration below on startup and loads the assigned versions through Module Federation. No host rebuild — and a rollback is the same step in reverse.",
+      "Services get an HTTPRoute on their environment's Gateway, with TLS from cert-manager. A micro frontend rolls back by re-activating its previous snapshot, with no rebuild.",
+  },
+];
+
+const lanes = [
+  {
+    name: "Backend services",
+    stages: ["Template", "CI builds the image", "Commit to Git", "Argo CD syncs", "HTTPRoute on the Gateway"],
+  },
+  {
+    name: "Micro frontends",
+    stages: ["Template", "CI uploads the build", "Immutable snapshot", "Host loads it at runtime", "One-click rollback"],
   },
 ];
 
 const HowItWorks = () => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(runtimeConfig);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-              How MFE Orchestrator
-              <span className="bg-gradient-primary bg-clip-text text-transparent"> works</span>
+              From template
+              <span className="bg-gradient-primary bg-clip-text text-transparent"> to production</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Four steps, and only one of them happens at release time.
+              Four steps, the same for a backend service and a micro frontend.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <ol className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {steps.map((step, index) => (
-              <div key={step.title} className="space-y-3">
+              <li key={step.title} className="space-y-3">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                   <span className="text-primary font-bold">{index + 1}</span>
                 </div>
                 <h3 className="font-semibold text-foreground text-lg">{step.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+              </li>
+            ))}
+          </ol>
+
+          <div className="space-y-4">
+            {lanes.map((lane) => (
+              <div
+                key={lane.name}
+                className="p-5 rounded-xl border border-primary/20 bg-surface/30 backdrop-blur-sm"
+              >
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-4">
+                  {lane.name}
+                </h3>
+                <ol className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
+                  {lane.stages.map((stage, index) => (
+                    <li key={stage} className="flex items-center gap-2 md:gap-3">
+                      {index > 0 && (
+                        <ArrowRight
+                          className="hidden md:block h-4 w-4 text-muted-foreground flex-shrink-0"
+                          aria-hidden="true"
+                        />
+                      )}
+                      <span className="px-3 py-1.5 rounded-md bg-background/50 border border-border/50 text-sm text-foreground">
+                        {stage}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
               </div>
             ))}
           </div>
-
-          <Card className="bg-surface/50 backdrop-blur-sm border-border/50 shadow-card">
-            <CardHeader className="flex flex-row items-center justify-between gap-4">
-              <div>
-                <CardTitle className="text-lg text-foreground">
-                  What your host receives at runtime
-                </CardTitle>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Illustrative configuration served per environment — versions, entry points and an
-                  in-flight canary.
-                </p>
-              </div>
-              <Button
-                variant="secondary"
-                size="sm"
-                onClick={handleCopy}
-                className="gap-2 flex-shrink-0"
-              >
-                {copied ? (
-                  <>
-                    <CheckCircle className="w-4 h-4 text-primary" />
-                    Copied!
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4" />
-                    Copy
-                  </>
-                )}
-              </Button>
-            </CardHeader>
-            <CardContent>
-              <pre className="text-sm text-muted-foreground overflow-x-auto p-4 bg-background/50 rounded-lg border border-border/30">
-                <code>{runtimeConfig}</code>
-              </pre>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </section>

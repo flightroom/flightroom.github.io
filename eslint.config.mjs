@@ -11,9 +11,7 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   {
-    // The CMS Studio is a separate project with its own dependencies and
-    // tsconfig; it must not be linted with the site's Next.js rules.
-    ignores: ["studio/**", "out/**"],
+    ignores: ["out/**"],
   }
   /*...compat.config({
     extends: ["next/core-web-vitals", "next/typescript"],

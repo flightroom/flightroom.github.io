@@ -4,23 +4,26 @@ import './style.css'
 import FAQList from './FAQList';
 import { WaitingListSection } from "@/components/waitingList/WaitingListSection";
 import JsonLd from "@/components/JsonLd";
-import { pageMetadata } from "@/lib/seo";
+import { PILLARS, pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/structuredData";
 
 // The canonical URL here used to point at /about, which told Google this page
 // was a duplicate of a different page and made it a candidate for being dropped
 // from the index entirely. pageMetadata derives it from the path instead.
 export const metadata: Metadata = pageMetadata({
-  title: "Micro Frontend Orchestration FAQ",
+  title: "FAQ: Micro Frontends, Kubernetes and AI",
   description:
-    "How a micro frontend orchestrator differs from plain Module Federation, how versioning, canary releases and rollback work, and whether you can self-host.",
+    "Answers about Flightroom: micro frontend releases without host rebuilds, GitOps deploys to Kubernetes with Argo CD, AI changes as pull requests, self-hosting.",
   path: "/faq",
   keywords: [
+    "Flightroom FAQ",
+    "MFE Orchestrator FAQ",
     "micro frontend FAQ",
-    "micro frontend orchestrator questions",
-    "module federation versioning",
-    "micro frontend rollback",
-    "self-hosted micro frontend platform",
+    "what does MFE stand for",
+    "micro frontend orchestrator",
+    "Argo CD GitOps FAQ",
+    "AI pull request FAQ",
+    "self-hosted developer platform",
   ],
 });
 
@@ -35,7 +38,7 @@ export default function FAQPage() {
             Frequently Asked Questions
           </h1>
           <p className="mt-5 max-w-xl mx-auto text-xl text-gray-500 dark:text-gray-300">
-            Micro frontends, orchestration and MFE Orchestrator — answered plainly.
+            Flightroom, micro frontends, Kubernetes and AI, answered plainly.
           </p>
         </div>
 
@@ -43,11 +46,23 @@ export default function FAQPage() {
 
         <div className="mt-16 text-center space-y-3 text-muted-foreground">
           <p>
-            Still deciding whether you need an orchestrator? Start with{" "}
+            Go deeper on{" "}
+            <Link href={PILLARS.microFrontends.path} className="text-primary hover:underline">
+              micro frontends
+            </Link>
+            ,{" "}
+            <Link href={PILLARS.kubernetes.path} className="text-primary hover:underline">
+              Kubernetes
+            </Link>{" "}
+            or{" "}
+            <Link href={PILLARS.ai.path} className="text-primary hover:underline">
+              AI
+            </Link>
+            . New to the architecture? Start with{" "}
             <Link href="/what-is-a-micro-frontend" className="text-primary hover:underline">
               what a micro frontend is
             </Link>
-            , or read how it compares to{" "}
+            , or how it compares to{" "}
             <Link href="/module-federation" className="text-primary hover:underline">
               plain Module Federation
             </Link>

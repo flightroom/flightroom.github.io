@@ -1,42 +1,43 @@
-# MFE Orchestrator
+# Flightroom
 
-> Ship a micro frontend without rebuilding the host application.
+> Build, ship and run your whole product on Kubernetes.
 
-MFE Orchestrator is an open-source control plane for micro frontends (MFEs). It
-stores every build, decides which version each environment serves, and hands the
-host application the runtime configuration it needs — including the Module
-Federation wiring. Releasing a micro frontend therefore never requires
-rebuilding or redeploying the shell, and a rollback is a version change rather
-than a rebuild. It runs as a hosted console or self-hosted with Docker Compose.
+Flightroom (formerly MFE Orchestrator) is an open-source platform that takes micro
+frontends and backend services from template to Kubernetes. It versions every
+build, releases micro frontends without rebuilding the host, deploys services
+through GitOps with Argo CD, and lets anyone on the team describe a change in
+plain language and get it back as a pull request. It runs as a hosted console or
+self-hosted with Docker, Docker Compose, a Helm chart on Kubernetes, or
+Terraform/OpenTofu. License: Apache-2.0.
 
-Category: micro frontend deployment and orchestration platform.
+Category: open-source platform for micro frontends and services on Kubernetes.
 Also written: micro-frontend, microfrontend. MFE stands for micro frontend.
-
-Key capabilities: version registry per environment (DEV/UAT/PROD and custom),
-runtime configuration for Module Federation hosts under Webpack and Vite, canary
-releases with gradual traffic shifting, one-step rollback, artifact storage on
-AWS S3 / Azure Blob Storage / Google Cloud Storage / on-premise, and CI/CD
-integrations for GitHub Actions, GitLab CI and Azure DevOps.
 
 This file is a pointer. The documentation is served under /documentation and
 carries its own llms.txt, which indexes every page.
 
 ## Documentation
 
-- [llms.txt](https://mfe-orchestrator.dev/documentation/llms.txt): index of every documentation page, each with a one-line description
-- [llms-full.txt](https://mfe-orchestrator.dev/documentation/llms-full.txt): the full markdown of every documentation page, in one file
-- [Documentation home](https://mfe-orchestrator.dev/documentation/): the HTML documentation
+- [llms.txt](https://flightroom.dev/documentation/llms.txt): index of every documentation page, each with a one-line description
+- [llms-full.txt](https://flightroom.dev/documentation/llms-full.txt): the full markdown of every documentation page, in one file
+- [Documentation home](https://flightroom.dev/documentation/): the HTML documentation
 
 ## Product
 
-- [MFE Orchestrator](https://mfe-orchestrator.dev/): product site
-- [Console](https://console.mfe-orchestrator.dev/): the hosted console
-- [GitHub](https://github.com/mfe-orchestrator): source, templates and CI integrations
+- [Flightroom](https://flightroom.dev/): product site
+- [Console](https://console.flightroom.dev/): the hosted console
+- [GitHub](https://github.com/flightroom): source, templates and CI integrations
+
+## Pillars
+
+- [Micro frontends](https://flightroom.dev/micro-frontends): independent releases without rebuilding the host, immutable snapshots, rollback, canary releases, per-environment variables, Module Federation config for Vite and Webpack
+- [Kubernetes](https://flightroom.dev/kubernetes): GitOps deploys with Argo CD, backend services from templates, environments as namespaces, Gateway API exposure
+- [AI](https://flightroom.dev/ai): describe a change in plain language and get a pull request, bring your own model, remote MCP server
 
 ## Concepts
 
-- [What is a micro frontend (MFE)?](https://mfe-orchestrator.dev/what-is-a-micro-frontend): definition of the term, the architecture, its trade-offs and when it is worth adopting
-- [Module Federation versioning and dynamic remotes](https://mfe-orchestrator.dev/module-federation): why Module Federation alone leaves version selection to you, and how the orchestrator replaces a hand-maintained remotes file
-- [FAQ](https://mfe-orchestrator.dev/faq): what MFE stands for, how orchestration differs from plain Module Federation, versioning, canary releases, rollback and self-hosting
-- [Get started](https://mfe-orchestrator.dev/start-now): the hosted console, or self-hosting with Docker Compose
-- [Why we built it](https://mfe-orchestrator.dev/about): the release problem that led to the project
+- [What is a micro frontend (MFE)?](https://flightroom.dev/what-is-a-micro-frontend): definition of the term, the architecture, its trade-offs and when it is worth adopting
+- [Module Federation versioning and dynamic remotes](https://flightroom.dev/module-federation): why Module Federation alone leaves version selection to you, and how Flightroom replaces a hand-maintained remotes file
+- [FAQ](https://flightroom.dev/faq): common questions on micro frontends, Kubernetes deploys, AI changes and self-hosting
+- [Get started](https://flightroom.dev/start-now): the hosted console, or self-hosting
+- [About](https://flightroom.dev/about): why the project exists and how it grew from MFE Orchestrator
