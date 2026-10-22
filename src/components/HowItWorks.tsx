@@ -20,12 +20,12 @@ const steps = [
   {
     title: "Deploy per environment",
     description:
-      "Environments map to Kubernetes namespaces. Deploy one service, one micro frontend, or a whole functional domain to an environment at once.",
+      "For services and container frontends, each environment is a Kubernetes namespace. Micro frontends are served per environment from their deployment. Deploy one app, or a whole functional domain at once.",
   },
   {
     title: "Expose and roll back",
     description:
-      "Services get an HTTPRoute on their environment's Gateway, with TLS from cert-manager. A micro frontend rolls back by re-activating its previous snapshot, with no rebuild.",
+      "Services get an HTTPRoute on their environment's Gateway, with TLS from cert-manager. A service rolls back by deploying its previous image version again. A micro frontend rolls back by re-activating its previous snapshot, with no rebuild.",
   },
 ];
 
@@ -51,7 +51,7 @@ const HowItWorks = () => {
               <span className="bg-gradient-primary bg-clip-text text-transparent"> to production</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Four steps, the same for a backend service and a micro frontend.
+              Four steps for a backend service or a micro frontend. The two split at deploy time.
             </p>
           </div>
 

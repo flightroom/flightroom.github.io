@@ -22,7 +22,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
-import PillarLinks from "@/components/PillarLinks";
 import { CONSOLE_URL, FORMER_NAME, PILLARS, QUICK_START_URL, SITE_URL, pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/structuredData";
 
@@ -253,14 +252,14 @@ export default function MicroFrontendsPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <a href={CONSOLE_URL} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="group cursor-pointer w-full sm:w-auto">
-                    Start free — no install
+                    Start free · no install
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </a>
                 <Link href={QUICK_START_URL}>
                   <Button variant="secondary" size="lg" className="cursor-pointer w-full sm:w-auto">
                     <BookOpen className="w-5 h-5" />
-                    Quick start — 10 minutes
+                    Quick start · 10 min
                   </Button>
                 </Link>
               </div>
@@ -582,14 +581,14 @@ export default function MicroFrontendsPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={CONSOLE_URL} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="group cursor-pointer w-full sm:w-auto">
-                  Start free — no install
+                  Start free · no install
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
               <Link href={QUICK_START_URL}>
                 <Button variant="secondary" size="lg" className="cursor-pointer w-full sm:w-auto">
                   <BookOpen className="w-5 h-5" />
-                  Quick start — 10 minutes
+                  Quick start · 10 min
                 </Button>
               </Link>
             </div>
@@ -604,7 +603,6 @@ export default function MicroFrontendsPage() {
         </div>
       </section>
 
-      <PillarLinks current="microFrontends" />
     </div>
   );
 }

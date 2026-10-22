@@ -23,7 +23,7 @@ module.exports = {
     // /documentation, so next-sitemap — which only walks ./out — never sees it.
     // Docusaurus emits its own sitemap there; this line names it for every
     // other crawler and keeps robots.txt honest about where content lives.
-    additionalSitemaps: ['https://flightroom.dev/documentation/sitemap.xml'],
+    additionalSitemaps: ['https://mfe-orchestrator.dev/documentation/sitemap.xml'],
     policies: [
       {
         userAgent: '*',

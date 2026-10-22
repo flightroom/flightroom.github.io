@@ -121,6 +121,10 @@ helm install flightroom ./helm/mfe-orchestrator \
 const requirements = [
   { label: "Kubernetes", detail: "Environments deploy to the cluster Argo CD runs in." },
   { label: "Argo CD 2.8 or later", detail: "Reachable over HTTPS from Flightroom, with an API token for its account." },
+  {
+    label: "ApplicationSet policy",
+    detail: "The ApplicationSet controller allows a policy per ApplicationSet: set applicationsetcontroller.enable.policy.override to \"true\" in argocd-cmd-params-cm. Without it, Argo CD ignores the create-update policy that keeps applications from being deleted.",
+  },
   { label: "Traefik v3", detail: "With its Gateway API provider on, plus the Gateway API CRDs. Only needed for exposure." },
   { label: "cert-manager", detail: "With a ClusterIssuer, for TLS. Without one, environments answer over plain HTTP." },
   { label: "A Git provider", detail: "GitHub, GitLab or Azure DevOps, for the configuration and applications repositories." },
@@ -384,7 +388,16 @@ export default function KubernetesPage() {
           </ul>
           <p className="text-sm text-muted-foreground">
             Exposure uses Traefik v3 as the Gateway API provider. Moving off one Kong per environment?
-            The docs include a migration guide that moves apps over one at a time.
+            The{" "}
+            <a
+              href={`${GITHUB_REPO_URL}/blob/development/docs/EXPOSURE.md#moving-off-one-kong-per-environment`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              exposure guide in the repository
+            </a>{" "}
+            moves apps over one at a time.
           </p>
         </section>
 
@@ -395,12 +408,12 @@ export default function KubernetesPage() {
               {
                 icon: GitCommit,
                 title: "Every deploy is a commit",
-                body: "The history of each environment is the history of its repositories. Who changed what, and when, is already recorded.",
+                body: "With GitOps on, each Deploy commits to the repositories first. The history of an environment is the history of its repositories: who changed what, and when, is already recorded.",
               },
               {
                 icon: History,
-                title: "Rollback is a Git operation",
-                body: "Revert the commit, or select the previous version and deploy again. Argo CD brings the cluster back in line.",
+                title: "Roll back by deploying again",
+                body: "Select the previous image version of the service and deploy. That commits the earlier values like any deploy, and Argo CD brings the cluster back in line. A revert made straight in Git is overwritten by the next deploy.",
               },
               {
                 icon: Lock,
@@ -438,7 +451,7 @@ export default function KubernetesPage() {
                 {requirements.map(({ label, detail }) => (
                   <div key={label} className="sm:flex sm:gap-4">
                     <dt className="font-semibold text-foreground sm:w-56 shrink-0">{label}</dt>
-                    <dd className="text-muted-foreground">{detail}</dd>
+                    <dd className="text-muted-foreground min-w-0 break-words">{detail}</dd>
                   </div>
                 ))}
               </dl>

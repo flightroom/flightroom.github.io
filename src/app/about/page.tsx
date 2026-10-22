@@ -54,8 +54,8 @@ const principles = [
   },
   {
     icon: UserCheck,
-    title: "Humans review",
-    body: "An AI change lands on a branch first. Code review, CI and branch protection stay in place, and a protected branch refuses a direct push.",
+    title: "Review stays yours",
+    body: "An AI change lands on a branch first. Code review, CI and branch protection stay in place. Protect the base branch and every AI change goes through review: a protected branch refuses a direct push.",
   },
 ];
 
@@ -120,7 +120,7 @@ export default function AboutPage() {
           <p className="text-lg text-muted-foreground leading-relaxed">
             So we stopped bundling micro frontends into the shell and loaded them at runtime instead.
             Every build is stored, each environment serves the versions assigned to it, and a
-            rollback re-activates the previous deployment without a rebuild. That became {FORMER_NAME},
+            rollback re-activates the previous deployment without a rebuild. That was the first version,
             and it is still the core of{" "}
             <Link href={PILLARS.microFrontends.path} className="text-primary hover:underline">
               Flightroom&apos;s micro frontend management
