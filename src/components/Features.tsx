@@ -25,7 +25,7 @@ const pillars = [
   },
   {
     ...PILLARS.microFrontends,
-    title: "Micro frontends",
+    title: "Micro frontend management",
     linkLabel: "Micro frontend management",
     icon: Layers,
     summary: "Release each part of the UI on its own, without rebuilding the host.",
@@ -41,9 +41,9 @@ const pillars = [
     title: "AI for everyone",
     linkLabel: "AI in Flightroom",
     icon: Sparkles,
-    summary: "Anyone on the team can ask for a change. Engineers review it as a pull request.",
+    summary: "An agent that works in your repositories, on the model you choose.",
     points: [
-      "Describe a change in plain words. It comes back on a branch, ready to open as a pull request.",
+      "Edit with AI on a micro frontend, a service, or a whole domain of up to 10 repositories.",
       "Generate a domain: up to 3 frontends and 3 backends created from templates, with CI.",
       "Bring your own model: Claude, GPT on Azure OpenAI, or Gemini.",
       "A remote MCP server for Claude Code, Cursor, VS Code and Gemini CLI.",

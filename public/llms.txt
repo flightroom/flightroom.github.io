@@ -13,14 +13,14 @@ Terraform/OpenTofu. License: Apache-2.0.
 Category: open-source platform for micro frontends and services on Kubernetes.
 Also written: micro-frontend, microfrontend. MFE stands for micro frontend.
 
-This file is a pointer. The documentation is served under /documentation and
+This file is a pointer. The documentation is served from mfe-orchestrator.dev/documentation for now and
 carries its own llms.txt, which indexes every page.
 
 ## Documentation
 
-- [llms.txt](https://flightroom.dev/documentation/llms.txt): index of every documentation page, each with a one-line description
-- [llms-full.txt](https://flightroom.dev/documentation/llms-full.txt): the full markdown of every documentation page, in one file
-- [Documentation home](https://flightroom.dev/documentation/): the HTML documentation
+- [llms.txt](https://mfe-orchestrator.dev/documentation/llms.txt): index of every documentation page, each with a one-line description
+- [llms-full.txt](https://mfe-orchestrator.dev/documentation/llms-full.txt): the full markdown of every documentation page, in one file
+- [Documentation home](https://mfe-orchestrator.dev/documentation/): the HTML documentation
 
 ## Product
 

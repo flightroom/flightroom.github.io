@@ -7,7 +7,7 @@ import ChangePanel from "@/components/home/ChangePanel";
 const highlights = [
   "Micro frontends without host rebuilds",
   "GitOps deploys through Argo CD",
-  "Plain-language changes as pull requests",
+  "AI changes in plain language",
   "Bring your own AI model",
 ];
 
@@ -30,7 +30,7 @@ const Hero = () => {
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto lg:mx-0">
                 Flightroom builds, ships and runs your product on Kubernetes: micro frontends,
                 backend services and GitOps deploys through Argo CD. With AI, anyone on the team
-                can describe a change and hand engineers a pull request.
+                can build: a request in plain words comes back as code on its own branch.
               </p>
             </div>
 
@@ -39,14 +39,14 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <a href={CONSOLE_URL} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="group cursor-pointer w-full sm:w-auto">
-                  Start free — no install
+                  Start free · no install
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
               <Link href={QUICK_START_URL}>
                 <Button variant="secondary" size="lg" className="group cursor-pointer w-full sm:w-auto">
                   <BookOpen className="w-5 h-5" />
-                  Quick start — 10 minutes
+                  Quick start · 10 min
                 </Button>
               </Link>
             </div>

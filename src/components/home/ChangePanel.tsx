@@ -1,28 +1,34 @@
-import { CheckCircle2, GitBranch, GitMerge, GitPullRequest, MessageSquareText, Ship } from "lucide-react";
+import { CheckCircle2, GitBranch, GitMerge, GitPullRequest, MessageSquareText, Rocket, Ship } from "lucide-react";
 
 /**
  * The hero visual. Drawn in JSX rather than a screen recording so it can show
  * the whole path a plain-language request takes (prompt, branch, review, CI,
- * Argo CD), which no single console screen does. Every step mirrors a real
- * product behaviour; the names and numbers are illustrative.
+ * deploy, Argo CD), which no single console screen does. The branch name
+ * follows the real ai/<slug>-<timestamp> format; review and merge happen in
+ * the Git provider; names and numbers are illustrative.
  */
 
 const steps = [
   {
     icon: GitBranch,
     label: "Branch created",
-    detail: "ai/free-shipping-threshold-1761140123",
+    detail: "ai/checkout-service-20261022-141502",
     note: "3 files changed · main untouched",
   },
   {
     icon: GitPullRequest,
     label: "Pull request #42 opened",
-    detail: "Review requested from @checkout-team",
+    detail: "Opened on GitHub · base branch main",
   },
   {
     icon: GitMerge,
     label: "CI passed · approved · merged",
     detail: "Image checkout-service:1.4.0 registered",
+  },
+  {
+    icon: Rocket,
+    label: "Deployed to uat",
+    detail: "A developer clicks Deploy · values committed to Git",
   },
   {
     icon: Ship,
@@ -37,8 +43,8 @@ export default function ChangePanel() {
       <figure className="relative bg-surface/30 backdrop-blur-sm border border-border/50 rounded-2xl p-4 sm:p-6 shadow-card text-left">
         <figcaption className="sr-only">
           Illustration: a product manager describes a change in plain language, the AI agent commits
-          it to a new branch, a pull request is reviewed and merged after CI, and Argo CD syncs the
-          new version to the UAT environment.
+          it to a new branch, a pull request is reviewed and merged after CI, a developer deploys the
+          new version to UAT, and Argo CD syncs it.
         </figcaption>
 
         {/* Window chrome, so the panel reads as the console rather than a diagram. */}

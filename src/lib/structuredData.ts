@@ -168,7 +168,7 @@ export function howToSchema() {
         "@type": "HowToStep",
         position: 4,
         name: "Deploy to an environment",
-        text: "Micro frontends are served at runtime without rebuilding the host. Services are committed to Git and synced to Kubernetes by Argo CD. Rollback re-activates the previous snapshot.",
+        text: "Micro frontends are served at runtime without rebuilding the host. Services are committed to Git and synced to Kubernetes by Argo CD. A micro frontend rolls back by re-activating its previous snapshot; a service rolls back by deploying its previous image version again.",
       },
     ],
   };

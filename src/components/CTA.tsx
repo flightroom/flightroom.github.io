@@ -22,7 +22,7 @@ const CTA = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href={CONSOLE_URL} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="group cursor-pointer w-full sm:w-auto">
-                Start free — no install
+                Start free · no install
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>

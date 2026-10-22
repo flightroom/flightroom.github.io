@@ -30,7 +30,7 @@ export const faqs: FAQItem[] = [
   {
     question: "What is a micro frontend orchestrator?",
     answer:
-      "A micro frontend orchestrator is the control plane that decides which version of each micro frontend an environment serves, and delivers that decision to the host application at runtime. Without one, the list of micro frontends and their URLs is hardcoded in the host, so every release means rebuilding and redeploying the host. Flightroom started as exactly this, under the name MFE Orchestrator.",
+      "A micro frontend orchestrator is the control plane that decides which version of each micro frontend an environment serves, and delivers that decision to the host application at runtime. Without one, the list of micro frontends and their URLs is hardcoded in the host, so every release means rebuilding and redeploying the host. Flightroom started as exactly this.",
   },
   {
     question: "Can I release a micro frontend without rebuilding the host?",

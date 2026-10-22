@@ -34,7 +34,7 @@ const selfHostOptions = [
   {
     name: "All-in-one container",
     text: "One container for a quick trial on a laptop.",
-    code: `docker run -p 8080:8080 ${DOCKER_IMAGE}`,
+    code: `docker run -d --name flightroom -p 8080:80 -v flightroom-data:/data ${DOCKER_IMAGE}`,
   },
   {
     name: "Docker Compose",
@@ -44,6 +44,7 @@ const selfHostOptions = [
   {
     name: "Helm chart on Kubernetes",
     text: "The chart supports an optional HPA. MongoDB and Redis are not bundled, so bring your own.",
+    href: `${DOCS_URL}/docs/self-hosting/helm`,
   },
   {
     name: "Terraform / OpenTofu",
@@ -53,9 +54,9 @@ const selfHostOptions = [
 
 const nextSteps = [
   { title: "Follow the quick start", text: "From zero to a deployed micro frontend and a rollback.", href: QUICK_START_URL },
-  { title: "Connect a repository", text: "GitHub, GitLab or Azure DevOps.", href: `${DOCS_URL}/` },
-  { title: "Initialize Argo CD", text: "One button in project settings sets up GitOps deploys to Kubernetes. Needs Argo CD 2.8+.", href: `${DOCS_URL}/` },
-  { title: "Configure an AI model", text: "Bring your own: Claude, GPT on Azure OpenAI or Gemini. Set once per organization.", href: `${DOCS_URL}/` },
+  { title: "Connect a repository", text: "GitHub, GitLab or Azure DevOps.", href: `${DOCS_URL}/docs/repositories/connect/github` },
+  { title: "Initialize Argo CD", text: "One button in project settings sets up GitOps deploys to Kubernetes. Needs Argo CD 2.8+.", href: `${GITHUB_REPO_URL}/blob/development/docs/ARGOCD.md` },
+  { title: "Configure an AI model", text: "Bring your own: Claude, GPT on Azure OpenAI or Gemini. Set once per organization.", href: `${DOCS_URL}/docs/ai/overview` },
 ];
 
 export default function StartNowPage() {
@@ -120,6 +121,11 @@ export default function StartNowPage() {
                 <div key={option.name}>
                   <h4 className="font-medium">{option.name}</h4>
                   <p className="text-sm text-muted-foreground">{option.text}</p>
+                  {option.href && (
+                    <a href={option.href} className="text-sm text-primary hover:underline">
+                      Helm chart docs
+                    </a>
+                  )}
                   {option.code && (
                     <pre className="mt-2 bg-muted/50 p-3 rounded-lg font-mono text-sm overflow-x-auto">
                       <code>{option.code}</code>
@@ -128,7 +134,8 @@ export default function StartNowPage() {
                 </div>
               ))}
               <p className="text-sm text-muted-foreground">
-                The all-in-one container serves the dashboard on <span className="font-mono">http://localhost:8080</span>.
+                After the all-in-one container starts, open <span className="font-mono">http://localhost:8080</span> and
+                create the first user. Its data lives in the <span className="font-mono">flightroom-data</span> volume.
                 Self-hosted installs send one anonymous daily telemetry ping, which you can turn off.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
@@ -155,7 +162,7 @@ export default function StartNowPage() {
 
       <div className="max-w-4xl mx-auto mt-12">
         <h2 className="text-2xl font-bold text-center mb-6">Next steps</h2>
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4 [&>*]:min-w-0">
           {nextSteps.map((step, index) => (
             <Card key={step.title} className="border-primary/20">
               <CardHeader>

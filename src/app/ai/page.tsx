@@ -276,11 +276,11 @@ export default function AiPage() {
         <section className="max-w-6xl mx-auto space-y-8">
           <div className="text-center space-y-3">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Guardrails engineers trust
+              The guardrails
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Opening the codebase to the whole team only works if review, branch protection and CI
-              stay where they are. They do.
+              Review, branch protection and CI stay where they are. Protect the base branch and
+              every AI change goes through review.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

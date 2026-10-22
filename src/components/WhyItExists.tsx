@@ -4,6 +4,7 @@ import {
   ArrowRight,
   Bot,
   Check,
+  FolderPlus,
   GitPullRequest,
   MessageSquareText,
   ShieldCheck,
@@ -13,8 +14,9 @@ import { PILLARS } from "@/lib/seo";
 
 /**
  * "Anyone can build" is the claim most likely to be read as hype, so the
- * section shows the exact path a request takes and lists the limits next to
- * it. The guardrails are part of the pitch, not small print.
+ * section shows the exact path a request takes, what Generate does on an empty
+ * domain, and the limits next to both. The guardrails are part of the pitch,
+ * not small print.
  */
 
 const flow = [
@@ -34,7 +36,7 @@ const flow = [
     icon: GitPullRequest,
     title: "Open a pull request",
     description:
-      "One click opens a pull request on GitHub, or a merge request on GitLab or Azure DevOps. Or discard it.",
+      "One click opens a pull request on GitHub or Azure DevOps, or a merge request on GitLab. Or discard it.",
   },
   {
     icon: ShieldCheck,
@@ -44,15 +46,22 @@ const flow = [
   },
   {
     icon: Ship,
-    title: "Deploy through Argo CD",
+    title: "Deploy it",
     description:
-      "The merged version is deployed like any other: committed to Git, synced by Argo CD, one environment at a time.",
+      "Someone deploys the new version like any other, one environment at a time. For a service, that is a Git commit Argo CD syncs.",
   },
+];
+
+const generate = [
+  "Describe what the domain should do.",
+  "AI proposes the frontends and backends it needs, up to 3 of each. Edit the proposal.",
+  "Confirm, and Flightroom creates each repository from a template, with CI.",
+  "The agent writes the first version on a branch of each repository.",
 ];
 
 const guardrails = [
   "Work happens on a new branch. Applying straight to a protected branch is refused.",
-  "Branch protection, code review and CI stay exactly where they are.",
+  "Branch protection, code review and CI stay where they are. Protect the base branch and every AI change goes through review.",
   "The agent cannot edit CI files, lockfiles or secret files.",
   "Each request is capped at 20 files, 500 KB and 40 rounds.",
   "Viewers cannot request or apply changes. Roles are checked on every MCP call.",
@@ -73,7 +82,7 @@ const WhyItExists = () => {
           </h2>
           <p className="text-xl text-muted-foreground">
             The people closest to the product can ask for a change themselves and hand engineers a
-            reviewable pull request instead of a ticket. Engineers keep the final say.
+            reviewable pull request instead of a ticket.
           </p>
         </div>
 
@@ -117,30 +126,43 @@ const WhyItExists = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-surface/50 backdrop-blur-sm border-primary/20">
+          <Card className="bg-surface/50 backdrop-blur-sm border-primary/30">
             <CardHeader>
-              <CardTitle className="text-xl text-foreground">Set up once by a developer</CardTitle>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                  <FolderPlus className="h-5 w-5" />
+                </div>
+                <CardTitle className="text-xl text-foreground">
+                  From an empty domain to a first version
+                </CardTitle>
+              </div>
             </CardHeader>
-            <CardContent className="space-y-4 text-muted-foreground">
-              <p>
-                A developer or admin connects the repository and configures the AI model for the
-                organization. From then on, anyone with the right role can ask for changes.
-              </p>
-              <p>
-                On an empty domain, AI can also propose up to three frontends and three backends.
-                Once you confirm, Flightroom creates the repositories from templates, with CI, and
-                runs the agent on them.
-              </p>
-              <Link
-                href={PILLARS.ai.path}
-                className="group inline-flex items-center gap-1 text-sm font-medium text-primary"
-              >
-                How AI works in Flightroom
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+            <CardContent>
+              <ol className="space-y-3">
+                {generate.map((item, index) => (
+                  <li key={item} className="flex items-start gap-3 text-muted-foreground">
+                    <span className="text-sm font-semibold text-primary mt-0.5 w-4 flex-shrink-0">
+                      {index + 1}
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ol>
             </CardContent>
           </Card>
         </div>
+
+        <p className="max-w-3xl mx-auto mt-8 text-center text-sm text-muted-foreground">
+          Set up once: a developer or admin connects the Git provider and picks the AI model for the
+          organization. From then on, anyone with the right role can ask.{" "}
+          <Link
+            href={PILLARS.ai.path}
+            className="group inline-flex items-center gap-1 font-medium text-primary"
+          >
+            How AI works in Flightroom
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </p>
       </div>
     </section>
   );

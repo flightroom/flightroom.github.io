@@ -17,8 +17,7 @@ export default function Heritage() {
               <span className="bg-gradient-primary bg-clip-text text-transparent"> {FORMER_NAME}</span>
             </h2>
             <p className="text-lg text-muted-foreground">
-              Flightroom was previously called {FORMER_NAME}. Same project, same team, new name,
-              wider scope. The micro frontend control plane is still the core: versions, environments,
+              Same project, same team, new name, wider scope. The micro frontend control plane is still the core: versions, environments,
               canary releases and rollback work as they always have.
             </p>
             <p className="text-lg text-muted-foreground">

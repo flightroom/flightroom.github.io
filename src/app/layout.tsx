@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   // localhost at build time.
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — ${PRODUCT.oneLiner} Free & Open Source`,
+    default: `${SITE_NAME} · ${PRODUCT.oneLiner}`,
     // Page titles read "<page> | Flightroom" without each page having
     // to repeat the brand.
     template: `%s | ${SITE_NAME}`,

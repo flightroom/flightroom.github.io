@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 
 export const SITE_URL = "https://flightroom.dev";
 export const CONSOLE_URL = "https://console.flightroom.dev";
-export const DOCS_URL = "https://flightroom.dev/documentation";
+/**
+ * The docs are still published from the old host: the flightroom/documentation
+ * repository has no Pages site yet, and flightroom.dev/documentation is a 404.
+ * Switch this (and the docs sitemap in next-sitemap.config.js) once it moves.
+ */
+export const DOCS_URL = "https://mfe-orchestrator.dev/documentation";
 /** The docs' golden path: zero to a deployed micro frontend and a rollback in ~10 minutes. */
 export const QUICK_START_URL = `${DOCS_URL}/docs/quick-start`;
 export const GITHUB_URL = "https://github.com/flightroom";

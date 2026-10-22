@@ -4,7 +4,9 @@ import './style.css'
 import FAQList from './FAQList';
 import { WaitingListSection } from "@/components/waitingList/WaitingListSection";
 import JsonLd from "@/components/JsonLd";
-import { PILLARS, pageMetadata } from "@/lib/seo";
+import { CONSOLE_URL, PILLARS, pageMetadata } from "@/lib/seo";
+import { Button } from "@/components/design-system";
+import { ArrowRight, Rocket } from "lucide-react";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/structuredData";
 
 // The canonical URL here used to point at /about, which told Google this page
@@ -68,6 +70,21 @@ export default function FAQPage() {
             </Link>
             .
           </p>
+        </div>
+
+        <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={CONSOLE_URL} target="_blank" rel="noopener noreferrer">
+            <Button size="lg" className="group cursor-pointer w-full sm:w-auto">
+              Start free · no install
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </a>
+          <Link href="/start-now">
+            <Button variant="secondary" size="lg" className="group cursor-pointer w-full sm:w-auto">
+              <Rocket className="w-5 h-5" />
+              All ways to get started
+            </Button>
+          </Link>
         </div>
       </div>
       <WaitingListSection />
