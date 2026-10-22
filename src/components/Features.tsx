@@ -19,6 +19,7 @@ const pillars = [
       "Each repository is created from one of Flightroom's templates, with CI included.",
       "Refine through chat. Every change lands on its own branch, ready to open as a pull request.",
       "Web interfaces in React, Angular or Vue. Services in Node.js, Python, Spring Boot or Quarkus.",
+      "Or work from Claude, ChatGPT, Cursor or VS Code: a remote MCP server gives them your projects, with your role.",
     ],
   },
   {
