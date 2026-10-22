@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 export const SITE_URL = "https://flightroom.dev";
 export const CONSOLE_URL = "https://console.flightroom.dev";
 export const DOCS_URL = "https://flightroom.dev/documentation";
+/** The remote MCP server of the hosted console. Self-hosted installs serve it at <console>/api/mcp. */
+export const MCP_URL = `${CONSOLE_URL}/api/mcp`;
+export const MCP_DOCS_URL = `${DOCS_URL}/docs/build-with-ai/mcp-server/`;
 export const GITHUB_URL = "https://github.com/flightroom";
 export const GITHUB_REPO_URL = "https://github.com/flightroom/flightroom";
 /** The project's X account. It predates the rename, so it still carries the old handle. */

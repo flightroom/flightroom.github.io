@@ -28,6 +28,7 @@ carries its own llms.txt, which indexes every page.
 - [Flightroom](https://flightroom.dev/): product site
 - [Console](https://console.flightroom.dev/): the hosted console
 - [GitHub](https://github.com/flightroom): source, templates and CI integrations
+- [MCP server](https://flightroom.dev/ai#mcp): remote MCP server at https://console.flightroom.dev/api/mcp (self-hosted: https://<your console>/api/mcp) for Claude, ChatGPT, Gemini, Claude Code, Cursor, VS Code and Gemini CLI, OAuth 2.1 sign-in or a project API key; [setup guide](https://flightroom.dev/documentation/docs/build-with-ai/mcp-server/)
 
 ## Pillars
 

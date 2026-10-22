@@ -90,7 +90,7 @@ export const faqs: FAQItem[] = [
   {
     question: "Can we use Claude, Cursor or other AI tools through MCP?",
     answer:
-      "Yes. Flightroom has a remote MCP server for Claude, Claude Code, Cursor, VS Code and Gemini CLI. Clients sign in with OAuth 2.1 and PKCE, the user's role is checked again on every call, and calls are rate limited. On self-hosted installs it is off until an operator turns it on.",
+      "Yes. Flightroom has a remote MCP server for Claude, ChatGPT, Gemini, Claude Code, Cursor, VS Code and Gemini CLI. Add https://console.flightroom.dev/api/mcp to your client (on a self-hosted install, https://<your console>/api/mcp), sign in, pick the projects to share and whether the client may change things. Clients sign in with OAuth 2.1 and PKCE, or with a project API key when they cannot do OAuth; the user's role is checked again on every call, and calls are rate limited. On self-hosted installs it is off until an operator sets MCP_ENABLED=true.",
   },
   {
     question: "Is Flightroom open source and free? Can we self-host it?",

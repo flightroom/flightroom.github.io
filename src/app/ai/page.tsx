@@ -32,7 +32,7 @@ import JsonLd from "@/components/JsonLd";
 import PillarLinks from "@/components/PillarLinks";
 import AiChangeMock from "@/components/ai/AiChangeMock";
 import { WaitingListSection } from "@/components/waitingList/WaitingListSection";
-import { CONSOLE_URL, DOCS_URL, PILLARS, pageMetadata } from "@/lib/seo";
+import { CONSOLE_URL, DOCS_URL, MCP_DOCS_URL, MCP_URL, PILLARS, pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/structuredData";
 
 export const metadata: Metadata = pageMetadata({
@@ -182,7 +182,34 @@ const models = [
   { family: "Gemini", where: "Gemini API" },
 ];
 
-const mcpClients = ["Claude", "Claude Code", "Cursor", "VS Code", "Gemini CLI"];
+const mcpClients = ["Claude", "ChatGPT", "Gemini", "Claude Code", "Cursor", "VS Code", "Gemini CLI"];
+
+const mcpSetups = [
+  {
+    client: "Claude, ChatGPT, Gemini",
+    how: "Add the URL as a custom connector (remote MCP server). The app asks you to sign in and approve access.",
+  },
+  {
+    client: "Claude Code",
+    how: "Add the server, then run /mcp in Claude Code to sign in.",
+    code: `claude mcp add --transport http flightroom ${MCP_URL}`,
+  },
+  {
+    client: "Cursor",
+    how: "In ~/.cursor/mcp.json, or .cursor/mcp.json in the project.",
+    code: JSON.stringify({ mcpServers: { flightroom: { url: MCP_URL } } }, null, 2),
+  },
+  {
+    client: "VS Code",
+    how: "In .vscode/mcp.json, then Start on the server to sign in.",
+    code: JSON.stringify({ servers: { flightroom: { type: "http", url: MCP_URL } } }, null, 2),
+  },
+  {
+    client: "Gemini CLI",
+    how: "In ~/.gemini/settings.json, then /mcp auth flightroom.",
+    code: JSON.stringify({ mcpServers: { flightroom: { httpUrl: MCP_URL } } }, null, 2),
+  },
+];
 
 export default function AiPage() {
   return (
@@ -503,7 +530,7 @@ export default function AiPage() {
         </section>
 
         {/* MCP */}
-        <section className="max-w-5xl mx-auto">
+        <section id="mcp" className="max-w-5xl mx-auto scroll-mt-24">
           <Card className="border-primary/20">
             <CardHeader>
               <div className="flex items-center gap-3">
@@ -563,9 +590,72 @@ export default function AiPage() {
                   </p>
                 </div>
               </div>
-              <p className="text-sm">
-                On a self-hosted install the MCP server is off until you turn it on.
-              </p>
+              <div className="space-y-4 border-t border-primary/20 pt-6">
+                <h3 className="text-xl font-semibold text-foreground">Connect your client</h3>
+                <p>
+                  Give your client the server URL. It opens the console, you sign in, pick the
+                  projects to share and whether the client may change things.
+                </p>
+                <pre className="bg-muted/50 p-3 rounded-lg font-mono text-sm overflow-x-auto text-foreground">
+                  <code>{MCP_URL}</code>
+                </pre>
+                <p className="text-sm">
+                  On a self-hosted install the URL is{" "}
+                  <span className="font-mono">https://&lt;your console&gt;/api/mcp</span>. The
+                  console shows it under Settings → Access → AI assistants.
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {mcpSetups.map((setup) => (
+                    <div key={setup.client} className="min-w-0 space-y-2">
+                      <h4 className="font-medium text-foreground">{setup.client}</h4>
+                      <p className="text-sm">{setup.how}</p>
+                      {setup.code && (
+                        <pre className="bg-muted/50 p-3 rounded-lg font-mono text-xs overflow-x-auto text-foreground">
+                          <code>{setup.code}</code>
+                        </pre>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6 border-t border-primary/20 pt-6">
+                <div className="min-w-0 space-y-2">
+                  <h3 className="flex items-center gap-2 font-medium text-foreground">
+                    <KeyRound className="h-4 w-4 text-primary-strong" />
+                    No OAuth? Use a project API key
+                  </h3>
+                  <p className="text-sm">
+                    Scripts, CI jobs and clients without browser sign-in send a project API key as{" "}
+                    <span className="font-mono">Authorization: Bearer &lt;key&gt;</span>. The key
+                    reaches its own project only.
+                  </p>
+                  <pre className="bg-muted/50 p-3 rounded-lg font-mono text-xs overflow-x-auto text-foreground">
+                    <code>{`claude mcp add --transport http flightroom ${MCP_URL} \\
+  --header "Authorization: Bearer <api key>"`}</code>
+                  </pre>
+                </div>
+                <div className="min-w-0 space-y-2">
+                  <h3 className="flex items-center gap-2 font-medium text-foreground">
+                    <Server className="h-4 w-4 text-primary-strong" />
+                    Self-hosted: turn it on
+                  </h3>
+                  <p className="text-sm">
+                    The MCP server is off by default. Set these on the backend, and the bundled
+                    nginx already routes the OAuth discovery documents.
+                  </p>
+                  <pre className="bg-muted/50 p-3 rounded-lg font-mono text-xs overflow-x-auto text-foreground">
+                    <code>{`MCP_ENABLED=true
+FRONTEND_URL=https://<your console>
+JWT_SECRET=<openssl rand -hex 32>`}</code>
+                  </pre>
+                </div>
+              </div>
+              <a href={MCP_DOCS_URL} target="_blank" rel="noopener noreferrer" className="inline-block">
+                <Button variant="secondary" className="cursor-pointer">
+                  <BookOpen className="w-4 h-4" />
+                  Read the MCP server guide
+                </Button>
+              </a>
             </CardContent>
           </Card>
         </section>
